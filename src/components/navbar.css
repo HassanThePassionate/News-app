@@ -1,0 +1,38 @@
+a{
+    text-decoration: none;
+    color: #444;
+    
+}
+ul{
+    list-style: none;
+}
+li{
+    font-size: 1.8rem;
+    font-weight: 600;
+    
+   
+}
+.active{
+    background-color: rgb(199, 73, 73);
+    color: #fff;
+    padding: 1rem;
+}
+.icons a i{
+
+    font-size: 3rem;
+    padding: 0 0.5rem;
+}
+.logo img{
+    width: 180px;
+}
+.navbar{
+    display: grid;
+    grid-template-columns: 6fr 3fr 2fr;
+    padding: 2rem;
+    align-items: center;
+    /* background-color: aqua; */
+}
+.navbar .list{
+display: flex;
+gap: 3rem;
+}
