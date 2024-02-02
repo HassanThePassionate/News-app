@@ -1,1330 +1,1328 @@
 import React, { useState, useEffect } from "react";
 import "./card.css";
-import axios from "axios";
 
 const Cards = () => {
   const [Images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
-        const data =
-        {
+        const data = {
           "status": "ok",
-          "totalResults": 14901,
+          "totalResults": 2217,
           "articles": [
             {
               "source": {
-                "id": null,
-                "name": "Thisiswhyimbroke.com"
+                "id": "wired",
+                "name": "Wired"
               },
-              "author": "staff",
-              "title": "Tesla Cyberbeer",
-              "description": "{{::og.description}}",
-              "url": "https://www.thisiswhyimbroke.com/tesla-cyberbeer",
-              "urlToImage": "{{::og.image}}",
-              "publishedAt": "2024-02-01T09:05:00Z",
-              "content": "We use cookies to ensure you get the best experience on our website. Learn more\r\nGOT IT!"
+              "author": "Michael Calore, Lauren Goode",
+              "title": "The Apple Vision Pro Lives Deep in the Uncanny Valley",
+              "description": "This week, we learn what it feels like to use Apple's new mixed reality headset, and we examine the various ways Apple envisions people interacting with each other while wearing the devices.",
+              "url": "https://www.wired.com/story/gadget-lab-podcast-630/",
+              "urlToImage": "https://media.wired.com/photos/65bae385cc880e2d196fd460/191:100/w_1280,c_limit/Apple-Vision-Pro-Uncanny-Valley-Gadget-Lab-Gear-GettyImages-1258467410.jpg",
+              "publishedAt": "2024-02-01T13:00:00Z",
+              "content": "Apple's first ever mixed reality headset, the Vision Pro, arrives tomorrow. Apple has a knack for revitalizing and legitimizing a product categorysomething that the face computer market really needs … [+1863 chars]"
+            },
+            {
+              "source": {
+                "id": "wired",
+                "name": "Wired"
+              },
+              "author": "Angela Watercutter",
+              "title": "Music Piracy Is Back in a Big Way—Especially From YouTube",
+              "description": "Visits to music piracy websites went up more than 13 percent last year, a new report says. The majority of those visits were to sites that allow users to download the audio from YouTube URLs.",
+              "url": "https://www.wired.com/story/music-piracy-way-up/",
+              "urlToImage": "https://media.wired.com/photos/65bae24ccdd1fa15dcc5a876/191:100/w_1280,c_limit/Music-Piracy-Culture-1926940224.jpg",
+              "publishedAt": "2024-02-01T12:00:00Z",
+              "content": "This weekend, dozens of artists are set to descend on Los Angeles for the 66th annual Grammy Awards. Trevor Noah will tell jokes, musicians will get trophiesand somewhere on the internet, someone wil… [+4264 chars]"
+            },
+            {
+              "source": {
+                "id": "wired",
+                "name": "Wired"
+              },
+              "author": "Will Knight",
+              "title": "I Tested a Next-Gen AI Assistant. It Will Blow You Away",
+              "description": "WIRED experimented with a new form of voice assistant that can browse the web and perform tasks online. Siri, Alexa, and other virtual helpers could soon be much more powerful.",
+              "url": "https://www.wired.com/story/fast-forward-tested-next-gen-ai-assistant/",
+              "urlToImage": "https://media.wired.com/photos/65baf73038f4406f11e1a29c/191:100/w_1280,c_limit/business_ai_voice_assistant.jpg",
+              "publishedAt": "2024-02-01T17:00:00Z",
+              "content": "The most famous virtual valets around todaySiri, Alexa, and Google Assistantare a lot less impressive than the latest AI-powered chatbots like ChatGPT or Google Bard. When the fruits of the recent ge… [+3117 chars]"
+            },
+            {
+              "source": {
+                "id": "the-verge",
+                "name": "The Verge"
+              },
+              "author": "Emma Roth",
+              "title": "Meta’s Quest headsets add spatial video and pinch controls to compete with Vision Pro",
+              "description": "Meta is rolling out spatial video and new pinching gestures to its Quest 2 and Quest 3 headsets just before the launch of the Vision Pro.",
+              "url": "https://www.theverge.com/2024/2/1/24058088/meta-quest-3-spatial-video-vision-pro",
+              "urlToImage": "https://cdn.vox-cdn.com/thumbor/Zh72X2mSe4dkOKcoxsEjQMTn6Yw=/0x0:780x439/1200x628/filters:focal(390x220:391x221)/cdn.vox-cdn.com/uploads/chorus_asset/file/25261271/meta_spatial_vid.png",
+              "publishedAt": "2024-02-01T18:17:59Z",
+              "content": "Metas Quest headsets add spatial video and pinch controls to compete with Vision Pro\r\nMetas Quest headsets add spatial video and pinch controls to compete with Vision Pro\r\n / Now, Quest 2 and Quest 3… [+3096 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Auto-moto.com"
+                "name": "Gizmodo.com"
               },
-              "author": "Sylvain Gauthier",
-              "title": "Pirater une Tesla peut rapporter très gros, ces hackers le montrent",
-              "description": "Des hackers ont engrangé pas moins de 450 000 dollars en piratant une Tesla. Ils ont notamment piraté le système d'info-divertissement ou les stations de recharge. Cela s'est produit au cours d'un événement spécial, Pwn2Own, organisé à Tokyo.",
-              "url": "https://www.auto-moto.com/en-bref/pirater-une-tesla-peut-rapporter-tres-gros--ces-hackers-le-montrent-29591",
-              "urlToImage": "https://photos.auto-moto.com/32/2024/02/photo_article/29591/158652/1200-L-pirater-une-tesla-peut-rapporter-trs-gros-des-hackers-le-montrent.webp",
-              "publishedAt": "2024-02-01T09:05:00Z",
-              "content": "De nos jours, les voitures connectées ouvrent la voie à un nouveau type de vols : ceux utilisant la technologie. Il ne s'agit désormais plus de fracturer une vitre et de tripatouiller les fils afin d… [+2118 chars]"
+              "author": "Maxwell Zeff",
+              "title": "Music Piracy Is Back, Baby",
+              "description": "“You wouldn’t steal a car. You wouldn’t steal a handbag,” said that infamous 2000s anti-piracy commercial from the Motion Picture Association. “Piracy is stealing.”Read more...",
+              "url": "https://gizmodo.com/music-piracy-is-back-baby-1851218401",
+              "urlToImage": "https://i.kinja-img.com/image/upload/c_fill,h_675,pg_1,q_80,w_1200/6a4bb584d704297d79864bff9a17009a.jpg",
+              "publishedAt": "2024-02-01T22:10:00Z",
+              "content": "You wouldnt steal a car. You wouldnt steal a handbag, said that infamous 2000s anti-piracy commercial from the Motion Picture Association. Piracy is stealing.\r\nBut would you pirate a song? Last year,… [+2097 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Fishki.net"
+                "name": "Gizmodo.com"
               },
-              "author": "https://fishki.net/profile/1922441",
-              "title": "В России запатентовали «Киберчетвёрку»",
-              "description": "В открытой базе Роспатента появилась патентная заявка на промышленный образец автомобиля. Названия он не имеет, но на приложенных к заявке эскизах изображён универсал, который явно напоминает ВАЗ-2104, переосмысленный в стилистике Tesla Cybertruck.",
-              "url": "https://fishki.net/auto/4574716-v-rossii-zapatentovali-kiberchetvyorku.html",
-              "urlToImage": "https://cdn.fishki.net/upload/post/2023/03/20/4574716/gallery/tn/cyb1.jpg",
-              "publishedAt": "2024-02-01T09:02:14Z",
-              "content": ", . , , .«» , «» . , , Tesla Cybertruck 2019 .\r\n, , . 2023 , . , . , - ."
+              "author": "Dua Rashid",
+              "title": "I'm Obsessed With This Huge Smart Touchscreen Calendar",
+              "description": "Skylight recently released a 27-inch variant of its smart calendar, which looks pretty promising. It’s essentially a huge touchscreen display housed in an aluminum or plastic case that you put on your wall like a framed piece of art. It lets you add, remove, …",
+              "url": "https://gizmodo.com/skylight-touchscreen-smart-calender-organization-1851215964",
+              "urlToImage": "https://i.kinja-img.com/image/upload/c_fill,h_675,pg_1,q_80,w_1200/a5aba7d33c3c2e32dde3bed947cdda82.jpg",
+              "publishedAt": "2024-02-01T18:10:00Z",
+              "content": "Skylight recently released a 27-inch variant of its smart calendar, which looks pretty promising. Its essentially a huge touchscreen display housed in an aluminum or plastic case that you put on your… [+1393 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Business Today"
+                "name": "Android Central"
               },
-              "author": "Business Today Desk",
-              "title": "US raises fees for H-1B, other categories of non-immigrant visas",
-              "description": "The H-1B visa, a non-immigrant visa, allows US companies to employ foreign workers in specialty occupations that require technical expertise.",
-              "url": "https://www.businesstoday.in/latest/world/story/us-raises-fees-for-h-1b-other-categories-of-non-immigrant-visas-415793-2024-02-01",
-              "urlToImage": "https://akm-img-a-in.tosshub.com/businesstoday/images/story/202402/65bb5de85a2a6-the-new-h-1b-application-visa-fee-has-been-increased-from-460-to-780-the-h-1b-registration-will-i-01012315-16x9.jpg",
-              "publishedAt": "2024-02-01T09:01:48Z",
-              "content": "The US has hiked fees for various categories of non-immigrant visas such as the H-1B, L-1, and EB-5, the most popular among Indians. The fee increase will come into force from April 1, 2024. \r\nThe H-… [+2157 chars]"
+              "author": "nicholas.sutrich@futurenet.com (Nicholas Sutrich)",
+              "title": "Meta is shifting from AR to VR, doubles down on Ray-Ban partnership",
+              "description": "Now that the Apple Vision Pro is giving Meta its first big challenge in years, the company has shifted development away from AR glasses and toward VR headsets.",
+              "url": "https://www.androidcentral.com/gaming/virtual-reality/meta-shifting-from-ar-to-vr",
+              "urlToImage": "https://cdn.mos.cms.futurecdn.net/2pZECUKtHzkvjNeJBDe4rX-1200-80.jpg",
+              "publishedAt": "2024-02-01T20:03:05Z",
+              "content": "<ul><li>One report states that Meta is pulling back on AR glasses development, citing high R&amp;D costs and no commercially viable product results.</li><li>One feature, Augments, has been canceled f… [+2732 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Frandroid"
+                "name": "Android Central"
               },
-              "author": "Marie Lizak",
-              "title": "La première voiture électrique sans lunette arrière arrive enfin en Europe et on connaît son prix",
-              "description": "Dévoilée en début d'année dernière, la nouvelle Polestar 4 débute enfin sa commercialisation en Europe, à partir de 63 200 euros. Plusieurs versions seront proposées pour le SUV coupé sans lunette arrière, qui chasse sur les terres de la Tesla Model Y, mais p…",
-              "url": "https://www.frandroid.com/marques/polestar/1928224_la-premiere-voiture-electrique-sans-lunette-arriere-arrive-enfin-en-europe-et-on-connait-son-prix",
-              "urlToImage": "https://images.frandroid.com/wp-content/uploads/2023/04/polestar-4-frandroid-666122-20230418-polestar-4.jpg",
-              "publishedAt": "2024-02-01T09:01:44Z",
-              "content": "Dévoilée en début d'année dernière, la nouvelle Polestar 4 débute enfin sa commercialisation en Europe, à partir de 63 200 euros. Plusieurs versions seront proposées pour le SUV coupé sans lunette ar… [+5233 chars]"
+              "author": "harish.jonnalagadda@futurenet.com (Harish Jonnalagadda)",
+              "title": "Samsung Galaxy S24 Ultra vs. Apple iPhone 15 Pro Max: Battle of the flagships",
+              "description": "The Galaxy S24 Ultra is the best phone that Samsung has to offer in 2024, but can it beat the iPhone 15 Pro Max?",
+              "url": "https://www.androidcentral.com/phones/samsung-galaxy-s24-ultra-vs-apple-iphone-15-pro-max",
+              "urlToImage": "https://cdn.mos.cms.futurecdn.net/FdXaRthr7zNSsPYddDWksM-1200-80.jpg",
+              "publishedAt": "2024-02-01T04:29:29Z",
+              "content": "Samsung Galaxy S24 Ultra vs. iPhone 15 Pro Max: Design\r\nWhy you can trust Android Central \r\nOur expert reviewers spend hours testing and comparing products and services so you can choose the best for… [+11788 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Yahoo Entertainment"
+                "name": "Android Central"
               },
-              "author": null,
-              "title": "Voiding Elon Musk’s $56 billion Tesla pay is a 'wake-up call' for directors at all companies",
+              "author": "vishnu.skar@gmail.com (Vishnu Sarangapurkar)",
+              "title": "Snapdragon 8 Gen 4 leak shows the chip may achieve some impressive clock speeds",
+              "description": "Qualcomm has just started to showcase Snapdragon 8 Gen 3's prowess with the latest Android flagships. The successor, however, is likely to outshine it very soon.",
+              "url": "https://www.androidcentral.com/phones/qualcomm-snapdragon-8-gen-4-early-benchmarks",
+              "urlToImage": "https://cdn.mos.cms.futurecdn.net/YS7xAwLueVWgPgeVpKTtfc-1200-80.jpg",
+              "publishedAt": "2024-02-01T06:22:42Z",
+              "content": "<ul><li>Qualcomm's next flagship SoC details and benchmarks leak way ahead of launch.</li><li>The Snapdragon 8 Gen 4 could hit 4.0GHz clock speeds — as noted by Digital Chat Station.</li><li>The late… [+2226 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Android Central"
+              },
+              "author": "michael.hicks@futurenet.com (Michael L Hicks)",
+              "title": "Meta Q4 2023 earnings report shows record-breaking Quest 3 sales, ad profits",
+              "description": "Meta's Reality Labs is still losing billions every quarter, but it's making so much money on ad revenue that it doesn't really matter (except to greedy shareholders).",
+              "url": "https://www.androidcentral.com/apps-software/meta-q4-2023-earnings-report",
+              "urlToImage": "https://cdn.mos.cms.futurecdn.net/zuwB8uGQSdre52kaVNFjSC-1200-80.jpeg",
+              "publishedAt": "2024-02-01T23:55:15Z",
+              "content": "<ul><li>Meta's final Q4 2023 earnings report showed $40.1 billion in revenue and a 41% operating margin.</li><li>Reality Labs invested about $5.6 billion in R&amp;D, but earned $1.07 billion back in … [+2911 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Juli Clover",
+              "title": "Apple Extends Modem Licensing Deal With Qualcomm Through March 2027",
+              "description": "Apple has extended its modem chip licensing agreement with Qualcomm through March 2027, Qualcomm said today during its first earnings call of 2024. Apple's existing agreement has now been extended for two years, so we can expect to see Qualcomm modems in the …",
+              "url": "https://www.macrumors.com/2024/01/31/apple-extends-qualcomm-modem-licensing-deal/",
+              "urlToImage": "https://images.macrumors.com/t/IHL9bVLl1s8V8hr6AaCmZcetTsc=/2500x/article-new/2023/02/5G-Modem-Feature-Blue.jpg",
+              "publishedAt": "2024-02-01T00:20:04Z",
+              "content": "Apple has extended its modem chip licensing agreement with Qualcomm through March 2027, Qualcomm said today during its first earnings call of 2024. Apple's existing agreement has now been extended fo… [+1690 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Juli Clover",
+              "title": "Apple Vision Pro Apps Now Live on App Store Website",
+              "description": "While Apple officially launched the visionOS App Store in mid-January, apps were not showing up on the ‌App Store‌ website. That has now changed, and the Vision Pro ‌App Store‌ is now live on the web as well.\n\n\n\n\n\nWhen viewing an app's webpage, ‌visionOS‌ scr…",
+              "url": "https://www.macrumors.com/2024/02/01/apple-vision-pro-apps-app-store-website/",
+              "urlToImage": "https://images.macrumors.com/t/3JRhiUaIcen-UTz-uPIImOElYWY=/2000x/article-new/2024/02/visionos-website.jpg",
+              "publishedAt": "2024-02-01T20:07:22Z",
+              "content": "While Apple officially launched the visionOSApp Store in mid-January, apps were not showing up on the ‌App Store‌ website. That has now changed, and the Vision Pro ‌App Store‌ is now live on the web … [+533 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Tim Hardwick",
+              "title": "Apple's Fifth Avenue Store Vision Pro Installation Is Shaping Up to Be a Spectacle",
+              "description": "Apple is putting the final retail preparations in place for the U.S. launch of its Apple Vision Pro headset on Friday, with dedicated areas in flagship retail stores where customers can test out the headset. But Apple's Fifth Avenue retail store in New York a…",
+              "url": "https://www.macrumors.com/2024/02/01/apple-vision-pro-launch-fifth-avenue/",
+              "urlToImage": "https://images.macrumors.com/t/JYuh4hKVNdiKNZ1b40SYtz5G3ek=/1600x/article-new/2024/02/cube-store-vision-pro-construction.jpeg",
+              "publishedAt": "2024-02-01T11:00:28Z",
+              "content": "Apple is putting the final retail preparations in place for the U.S. launch of its Apple Vision Pro headset on Friday, with dedicated areas in flagship retail stores where customers can test out the … [+1498 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Juli Clover",
+              "title": "Meta's VR Headset Can Play iPhone Spatial Videos",
+              "description": "The Meta Quest VR headset will soon be able to play spatial videos captured on an iPhone 15 Pro or ‌iPhone 15 Pro‌ Max, Meta announced today. The upcoming v62 update will add support for the feature.\n\n\n\n\n\nSpatial videos can be uploaded to the Meta Quest heads…",
+              "url": "https://www.macrumors.com/2024/02/01/meta-quest-spatial-videos/",
+              "urlToImage": "https://images.macrumors.com/t/1mlSu4iaIcamM9G1FgjDgi2IRus=/1600x/article-new/2024/02/meta-quest-spatial-video.png",
+              "publishedAt": "2024-02-01T19:22:03Z",
+              "content": "The Meta Quest VR headset will soon be able to play spatial videos captured on an iPhone 15 Pro or ‌iPhone 15 Pro‌ Max, Meta announced today. The upcoming v62 update will add support for the feature.… [+1434 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Juli Clover",
+              "title": "Apple Now Has More Than 2.2 Billion Active Devices Worldwide",
+              "description": "There are more than two billion active iPhones, iPads, Macs, and other Apple devices worldwide, Apple said today in the earnings report covering the first fiscal quarter of 2024.\n\n\n\n\n\n\"We are pleased to announce that our installed base of active devices has n…",
+              "url": "https://www.macrumors.com/2024/02/01/apple-2-2-billion-active-devices/",
+              "urlToImage": "https://images.macrumors.com/t/zJWS6V8S235N6gEQ3yr0qXteUWI=/1600x/article-new/2022/09/apple-beta-lineup-2022.jpg",
+              "publishedAt": "2024-02-01T21:47:32Z",
+              "content": "There are more than two billion active iPhones, iPads, Macs, and other Apple devices worldwide, Apple said today in the earnings report covering the first fiscal quarter of 2024.\r\n\"We are pleased to … [+511 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Joe Rossignol",
+              "title": "Vision Pro Demo Appointments Begin Tomorrow at All U.S. Apple Stores",
+              "description": "Apple Vision Pro launches in the U.S. this Friday, and you will be able to try out the headset at your local Apple Store on the same day.\n\n\n\n\n\nStarting tomorrow at 8 a.m. local time, all Apple Stores in the U.S. will allow customers to sign up for a Vision Pr…",
+              "url": "https://www.macrumors.com/2024/02/01/vision-pro-apple-store-demos/",
+              "urlToImage": "https://images.macrumors.com/t/FeS4YOErTvcpwBbP9Qu7HaevaDA=/2880x/article-new/2024/02/Apple-Vision-Pro-Demo.jpeg",
+              "publishedAt": "2024-02-01T19:32:31Z",
+              "content": "Apple Vision Pro launches in the U.S. this Friday, and you will be able to try out the headset at your local Apple Store on the same day.\r\nStarting tomorrow at 8 a.m. local time, all Apple Stores in … [+724 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Tim Hardwick",
+              "title": "Here's What Tim Cook Looks Like Wearing Apple Vision Pro",
+              "description": "Tim Cook has been finally photographed wearing the Apple Vision Pro headset for a Vanity Fair interview, which leads on the digital cover of the magazine.\n\n\n\n\n\nThis is the first time the Apple CEO has been seen wearing the device since its unveiling at WWDC 2…",
+              "url": "https://www.macrumors.com/2024/02/01/tim-cook-wears-apple-vision-pro-vanity-fair/",
+              "urlToImage": "https://images.macrumors.com/t/91adLpD7OElpgF3BZGcJKLS7KnE=/1920x/article-new/2024/02/vanity-fair-vision-pro-tim-cook.jpg",
+              "publishedAt": "2024-02-01T12:42:51Z",
+              "content": "Tim Cook has been finally photographed wearing the Apple Vision Pro headset for a Vanity Fair interview, which leads on the digital cover of the magazine.\r\nThis is the first time the Apple CEO has be… [+2972 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Juli Clover",
+              "title": "Apple Spending a 'Tremendous Amount of Time and Effort' on AI, Details Coming 'Later This Year'",
+              "description": "During today's earnings call covering the first fiscal quarter of 2024, Apple CEO Tim Cook commented on Apple's work on artificial intelligence. He said that Apple is investing a \"tremendous\" amount of time and effort in AI, with details to come later this ye…",
+              "url": "https://www.macrumors.com/2024/02/01/apple-ai-details-coming-later-this-year/",
+              "urlToImage": "https://images.macrumors.com/t/X8Mvv4-ay3fM6NWUohr6lbyLJmM=/1600x/article-new/2022/03/hey-siri-banner-apple.jpg",
+              "publishedAt": "2024-02-01T22:17:18Z",
+              "content": "During today's earnings call covering the first fiscal quarter of 2024, Apple CEO Tim Cook commented on Apple's work on artificial intelligence. He said that Apple is investing a \"tremendous\" amount … [+931 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MacRumors"
+              },
+              "author": "Juli Clover",
+              "title": "Apple's Q1 2024 Earnings Call Takeaways",
+              "description": "Apple today held its earnings call for the first fiscal quarter of 2024 (fourth calendar quarter of 2023), with Apple CEO Tim Cook and Apple CFO Luca Maestri sharing details on Apple's performance, recent product sales, services growth, and more.\n\n\n\n\n\nWe've h…",
+              "url": "https://www.macrumors.com/2024/02/01/apple-q1-2024-earnings-tidbits/",
+              "urlToImage": "https://images.macrumors.com/t/xkVHlBaujx_SDb1_mm4VSNOI50g=/2676x/article-new/2022/01/Apple-Logo-Cash-Feature-Yellow.jpg",
+              "publishedAt": "2024-02-01T23:04:55Z",
+              "content": "Apple today held its earnings call for the first fiscal quarter of 2024 (fourth calendar quarter of 2023), with Apple CEO Tim Cook and Apple CFO Luca Maestri sharing details on Apple's performance, r… [+3257 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "NPR"
+              },
+              "author": "The Associated Press",
+              "title": "Former CIA engineer gets 40 years for giving agency's hacking secrets to WikiLeaks",
+              "description": "Joshua Schulte was sentenced in what the U.S. government described as the biggest theft of classified information in CIA history and for possession of child sexual abuse images and videos.",
+              "url": "https://www.npr.org/2024/02/01/1228493323/former-cia-engineer-sentenced-40-years-wikileaks",
+              "urlToImage": "https://media.npr.org/include/images/facebook-default-wide-s1400-c100.jpg",
+              "publishedAt": "2024-02-01T22:57:52Z",
+              "content": "NEW YORK A former CIA software engineer was sentenced to 40 years in prison on Thursday after his convictions for what the government described as the biggest theft of classified information in CIA h… [+4072 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Matthew Fox",
+              "title": "Live updates: Apple to report 4th-quarter earnings",
+              "description": "Apple will report first-quarter earnings after the closing bell on Feb. 1. Investors will be watching iPhone sales and the launch of the Vision Pro.",
+              "url": "https://www.businessinsider.com/apple-stock-earnings-report-q1-call-aapl-price-live-updates-2024-2",
+              "urlToImage": "https://i.insider.com/65baaea3ac2de4f17ee6666d?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T15:01:01Z",
+              "content": "Apple CEO Tim Cook officially took over the company in 2011.Richard Drew/AP\r\n<ul><li>Apple reports fiscal first-quarter earnings on Thursday.</li><li>Investors will be watching iPhone sales in China … [+1538 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Tom Carter",
+              "title": "Apple fans finally got a proper look at one of the Vision Pro's more bizarre features — and some think it's terrible",
+              "description": "The Apple Vision Pro's EyeSight feature displays a digital version of a user's eyes while they're wearing the $3,499 headset.",
+              "url": "https://www.businessinsider.com/apple-vision-pro-eyesight-feature-fans-reaction-2024-1",
+              "urlToImage": "https://i.insider.com/65ba34cf43bb77284ba1f963?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T12:40:21Z",
+              "content": "\"EyeSight\" has featured heavily in the marketing for the Vision Pro. Apple\r\n<ul><li>Some Apple fans were unimpressed by the Vision Pro's \"EyeSight\" feature when reviews came out this week.</li><li>It… [+2903 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Sarah Jackson",
+              "title": "Tim Cook says Apple's earliest version of the Vision Pro was a 'monster' you couldn't even wear",
+              "description": "Apple Vision Pro reviewers say it's heavy after extended use, but Tim Cook told Vanity Fair an early version was even bulkier.",
+              "url": "https://www.businessinsider.com/tim-cook-early-apple-vision-pro-monster-not-wearable-2024-2",
+              "urlToImage": "https://i.insider.com/65bbb72243bb77284ba27301?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T19:42:55Z",
+              "content": "The Apple Vision Pro launches in the US on February 2.Justin Sullivan/Getty Images\r\n<ul><li>Reviewers say the Apple Vision Pro can feel heavy, but it's at least lighter than it used to be.</li><li>CE… [+1668 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Ana Altchek",
+              "title": "Tim Cook has finally been photographed wearing Apple's new face computer",
+              "description": "Apple's chief appeared in pictures wearing the mixed-reality headset, marking the first time that a company exec has been seen with it on.",
+              "url": "https://www.businessinsider.com/tim-cook-finally-photographed-wearing-apple-vision-pro-2024-2",
+              "urlToImage": "https://i.insider.com/65bbcf9a7a3d27148876a871?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T18:11:53Z",
+              "content": "Tim Cook next to the Vision Pro headset during the Apple Worldwide Developers Conference in June 2023.Justin Sullivan/Getty Images\r\n<ul><li>Apple CEO Tim Cook has finally been photographed with the V… [+2054 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Beatrice Nolan",
+              "title": "Microsoft's full set of Office apps will be available on Apple's Vision Pro — including the company's new AI assistant, Copilot",
+              "description": "The tech giant said programs including Microsoft Word, Excel, and PowerPoint would be available on Apple's new headset on its launch day.",
+              "url": "https://www.businessinsider.com/microsoft-office-apps-apple-vision-pro-copilot-2024-2",
+              "urlToImage": "https://i.insider.com/65bb91ce43bb77284ba26302?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T15:18:46Z",
+              "content": "Microsoft CEO Satya Nadella.Stephen Brashear/Getty Images\r\n<ul><li>Microsoft is bringing a full suite of Office apps to Apple's Vision Pro.</li><li>The company said the apps would be available from t… [+1729 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Camilo Fonseca",
+              "title": "Apple is shipping out jailbroken iPhones and a bunch of stickers to bug bounty hunters",
+              "description": "A security researcher recently received a jailbroken device from the company so he could look for new bugs and vulnerabilities in iOS.",
+              "url": "https://www.businessinsider.com/apple-jailbreaking-iphones-stickers-security-bugs-2024-2",
+              "urlToImage": "https://i.insider.com/65bc16407a3d27148876ebf1?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T22:36:30Z",
+              "content": "Apple is shipping jailbroken iPhones to third-party researchers who are part of its Security Research Device Program.Courtesy of Gergely Kalman\r\n<ul><li>Images are circulating on social media of Appl… [+2821 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Sarah Jackson",
+              "title": "Meta's soaring profits just paid for its first-ever dividend",
+              "description": "Meta declared a $0.50-per-share dividend, its first ever, and authorized a $50 billion buyback boost as profits spiked.",
+              "url": "https://www.businessinsider.com/metas-profits-first-ever-dividend-2024-2",
+              "urlToImage": "https://i.insider.com/65bc1be07a3d27148876f0a5?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T22:32:14Z",
+              "content": "Mark Zuckerberg's Meta announced its first-ever dividend in its earnings release Thursday.BRENDAN SMIALOWSKI / Getty Images\r\n<ul><li>Meta says it's going to start paying its first-ever dividend.</li>… [+1395 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Theron Mohamed",
+              "title": "Warren Buffett's Berkshire Hathaway is an epic turnaround story — and its latest deal looks a winner, expert says",
+              "description": "Warren Buffett's company beat the odds given its original focus on \"textiles, trading stamps, and department stores,\" says author Jacob McDonough.",
+              "url": "https://www.businessinsider.com/warren-buffett-berkshire-hathway-turnaround-story-mcdonough-pilot-real-estate-2024-1",
+              "urlToImage": "https://i.insider.com/5f3aa95ae89ebf001f04541f?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T09:42:34Z",
+              "content": "Warren Buffett.Getty Images / Bill Pugliano\r\n<ul>\n<li>Warren Buffett's Berkshire Hathaway is the result of an incredible turnaround, Jacob McDonough said.</li>\n<li>The company was unlikely to succeed… [+3092 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Peter Kafka",
+              "title": "The video game industry is in trouble. Here's why.",
+              "description": "Video games have hit a rough patch: Sales are down, usage is down, and layoffs are spiking. There isn't an obvious solution showing up anytime soon.",
+              "url": "https://www.businessinsider.com/video-games-xbox-playstation-spider-man-movie-business-trouble-why-2024-2",
+              "urlToImage": "https://i.insider.com/65bbd18e7a3d27148876a9b9?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T17:37:23Z",
+              "content": "Is it \"Game Over\" for the video game industry? It faces trying times ahead.DC Studio/Shutterstock\r\n<ul><li>Video games are a huge business — even bigger than Hollywood by some measures.</li><li>But i… [+4628 chars]"
+            },
+            {
+              "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+              },
+              "author": "Dan DeFrancesco",
+              "title": "A Senate hearing with top tech CEOs about online child safety had plenty of fireworks",
+              "description": "In today's big story, we're looking at the grilling tech CEOs got during a contentious Senate hearing, with one notable exception.",
+              "url": "https://www.businessinsider.com/social-media-congress-hearing-meta-tiktok-x-2024-2",
+              "urlToImage": "https://i.insider.com/65bb8a207a3d2714887676bb?width=1200&format=jpeg",
+              "publishedAt": "2024-02-01T14:44:50Z",
+              "content": "Alex Wong/Getty\r\n<ul><li>This post originally appeared in the Insider Today newsletter.</li><li>You can sign up for Business Insider's daily newsletter here.</li></ul>Hello! You could win a prize wor… [+7640 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "ReadWrite"
+              },
+              "author": "Sam Shedden",
+              "title": "Wizz: Tinder-like app for teens removed from Apple App Store and Google Play Store",
+              "description": "The teen-focused dating app Wizz has been taken down from both the Apple App Store and Google Play Store over […]\nThe post Wizz: Tinder-like app for teens removed from Apple App Store and Google Play Store appeared first on ReadWrite.",
+              "url": "https://readwrite.com/wizz-tinder-like-app-for-teens-removed-from-apple-app-store-and-google-play-store/",
+              "urlToImage": "https://readwrite.com/wp-content/uploads/2024/02/Untitled-design-9.jpg",
+              "publishedAt": "2024-02-01T13:43:36Z",
+              "content": "The teen-focused dating app Wizz has been taken down from both the Apple App Store and Google Play Store over allegations it facilitated the sexual exploitation of minors.\r\nLaunched in 2019 by French… [+2102 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "ReadWrite"
+              },
+              "author": "Paul McNally",
+              "title": "Game-creating royalty Hideo Kojima working on new spy title",
+              "description": "When the creator of legendary video game history such as Metal Gear Solid and Death Stranding drops into conversation that […]\nThe post Game-creating royalty Hideo Kojima working on new spy title appeared first on ReadWrite.",
+              "url": "https://readwrite.com/game-creating-royalty-hideo-kojima-working-on-new-spy-title/",
+              "urlToImage": "https://readwrite.com/wp-content/uploads/2024/02/2048px-Hideo_Kojima_20100702_Japan_Expo_1.jpg",
+              "publishedAt": "2024-02-01T12:36:50Z",
+              "content": "When the creator of legendary video game history such as Metal Gear Solid and Death Stranding drops into conversation that he is working on a new action espionage game set in a completely different g… [+1598 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Hipertextual"
+              },
+              "author": "Rubén Chicharro",
+              "title": "Apple Vision Pro: 13 secretos muy curiosos que no sabíamos hasta ahora",
+              "description": "Las Apple Vision Pro saldrán a la venta el 2 de febrero, y si bien desde su lanzamiento no hemos parado de cubrir detalles que Apple no reveló durante la presentación del producto, como la tasa de refresco de las pantallas o los precios de las lentes ZEISS, h…",
+              "url": "http://hipertextual.com/2024/02/apple-vision-pro-13-secretos-muy-curiosos-que-no-sabiamos-hasta-ahora",
+              "urlToImage": "https://imgs.hipertextual.com/wp-content/uploads/2023/06/DSC06393-scaled.jpg",
+              "publishedAt": "2024-02-01T17:00:58Z",
+              "content": "Las Apple Vision Pro saldrán a la venta el 2 de febrero, y si bien desde su lanzamiento no hemos parado de cubrir detalles que Apple no reveló durante la presentación del producto, como la tasa de re… [+5999 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Hipertextual"
+              },
+              "author": "Gabriel Erard",
+              "title": "Así fue la primera prueba de Tim Cook con un prototipo del Apple Vision Pro: “Era como un monstruo”",
+              "description": "El lanzamiento del Apple Vision Pro está a la vuelta de la esquina. Mañana, viernes 2 de febrero, el ordenador espacial de la firma de Cupertino estará oficialmente disponible en Estados Unidos. Tim Cook, CEO de la compañía, ha aprovechado para recordar cómo …",
+              "url": "http://hipertextual.com/2024/02/tim-cook-prototipo-apple-vision-pro",
+              "urlToImage": "https://imgs.hipertextual.com/wp-content/uploads/2024/02/Apple-WWDC23-Tim-Cook-with-Apple-Vision-Pro-scaled.jpg",
+              "publishedAt": "2024-02-01T15:57:00Z",
+              "content": "El lanzamiento del Apple Vision Pro está a la vuelta de la esquina. Mañana, viernes 2 de febrero, el ordenador espacial de la firma de Cupertino estará oficialmente disponible en Estados Unidos. Tim … [+4376 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Hipertextual"
+              },
+              "author": "Gabriel Erard",
+              "title": "Apple extiende su contrato con Qualcomm y crece la incertidumbre por el módem 5G propio para el iPhone",
+              "description": "En la presentación de los resultados financieros del primer trimestre fiscal 2024, Qualcomm anunció que Apple ejecutó la \"opción unilateral\" de extender su acuerdo global de licencias de patentes hasta marzo de 2027. Una noticia que vuelve a generar incertidu…",
+              "url": "http://hipertextual.com/2024/02/apple-extiende-vinculo-qualcomm-modem-5g-iphone",
+              "urlToImage": "https://imgs.hipertextual.com/wp-content/uploads/2023/09/iPhone-15-1-scaled.jpg",
+              "publishedAt": "2024-02-01T19:46:08Z",
+              "content": "En la presentación de los resultados financieros del primer trimestre fiscal 2024, Qualcommanunció que Apple ejecutó la \"opción unilateral\" de extender su acuerdo global de licencias de patentes hast… [+3268 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Hipertextual"
+              },
+              "author": "Luis Miranda",
+              "title": "Apple anuncia más de 600 apps optimizadas para las Vision Pro en su lanzamiento",
+              "description": "Apple anunció que habrá más de 600 aplicaciones optimizadas con las Vision Pro para el día de lanzamiento. Los desarrolladores optimizaron la experiencia de uso para aprovechar las posibilidades que ofrece el lienzo infinito y otras prestaciones de las nuevas…",
+              "url": "http://hipertextual.com/2024/02/apple-vision-pro-apps-optimizadas-visionos",
+              "urlToImage": "https://imgs.hipertextual.com/wp-content/uploads/2023/06/Apple-Vision-pro-scaled.jpg",
+              "publishedAt": "2024-02-01T18:00:00Z",
+              "content": "Apple anunció que habrá más de 600 aplicaciones optimizadas con las Vision Pro para el día de lanzamiento. Los desarrolladores optimizaron la experiencia de uso para aprovechar las posibilidades que … [+5056 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Hipertextual"
+              },
+              "author": "Luis del Barco",
+              "title": "Apple anuncia unos moderados resultados trimestrales el día antes de la llegada de las Vision Pro",
+              "description": "Apple acaba de dar a conocer los resultados correspondientes a su primer trimestre fiscal (Q1). Estos se corresponden con el último trimestre del año natural, que suele ser el periodo más fuerte de ventas para la empresa. En octubre, noviembre y diciembre la …",
+              "url": "http://hipertextual.com/2024/02/apple-resultados-trimestrales-vision-pro",
+              "urlToImage": "https://imgs.hipertextual.com/wp-content/uploads/2023/06/Apple-WWDC23-Tim-Cook-with-Apple-Vision-Pro.jpg",
+              "publishedAt": "2024-02-01T22:06:36Z",
+              "content": "Apple acaba de dar a conocer los resultados correspondientes a su primer trimestre fiscal (Q1). Estos se corresponden con el último trimestre del año natural, que suele ser el periodo más fuerte de v… [+3303 chars]"
+            },
+            {
+              "source": {
+                "id": "time",
+                "name": "Time"
+              },
+              "author": "Frank Bajak / AP",
+              "title": "Journalists and Lawyers Hacked With Pegasus Spyware in Jordan, Probe Finds",
+              "description": "Pegasus spyware was used in Jordan to hack at least 30 people, including journalists, lawyers, and activists, a probe Access Now found.",
+              "url": "https://time.com/6590855/jordan-pegasus-spyware-hack/",
+              "urlToImage": "https://api.time.com/wp-content/uploads/2024/02/GettyImages-1238318114.jpg?quality=85",
+              "publishedAt": "2024-02-01T15:34:40Z",
+              "content": "Israeli-made Pegasus spyware was used in Jordan to hack the cellphones of at least 30 people, including journalists, lawyers, human rights and political activists, the digital rights group Access Now… [+4250 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Xataka.com"
+              },
+              "author": "Javier Pastor",
+              "title": "Hemos comparado el nuevo Bard con Gemini Pro con ChatGPT y Copilot: GPT-4 es mucho GPT-4",
+              "description": "La aparición de ChatGPT hizo que Google pronto se diera cuenta de la amenaza que este chatbot planteaba para su negocio. En la empresa se activó un \"código rojo\", pero curiosamente eso no provocó lanzamientos apresurados.\n<!-- BREAK 1 -->\nEn lugar de eso, anu…",
+              "url": "https://www.xataka.com/robotica-e-ia/hemos-comparado-nuevo-bard-gemini-pro-chatgpt-copilot-gpt-4-mucho-gpt-4",
+              "urlToImage": "https://i.blogs.es/bb60f6/chat2/840_560.jpeg",
+              "publishedAt": "2024-02-01T16:31:22Z",
+              "content": "La aparición de ChatGPT hizo que Google pronto se diera cuenta de la amenaza que este chatbot planteaba para su negocio. En la empresa se activó un \"código rojo\", pero curiosamente eso no provocó lan… [+14429 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Xataka.com"
+              },
+              "author": "Ricardo Aguilar",
+              "title": "Samsung Galaxy S24 Ultra, análisis: la IA era el ingrediente secreto para volver a ser el mejor Android del mercado",
+              "description": "Si me preguntas cuál fue el mejor móvil Android en 2023 mi respuesta es tajante: el Samsung Galaxy S23 Ultra. Tras haber probado toda la gama alta del año pasado, bajo mi criterio no hubo un solo modelo que se le acercase en equilibrio general. El reto del nu…",
+              "url": "https://www.xataka.com/analisis/samsung-galaxy-s24-ultra-analisis-caracteristicas-precio-especificaciones",
+              "urlToImage": "https://i.blogs.es/5e1e66/samsung-galaxy-s24-ultra_2274-mejorado-nr/840_560.jpeg",
+              "publishedAt": "2024-02-01T16:01:22Z",
+              "content": "Si me preguntas cuál fue el mejor móvil Android en 2023 mi respuesta es tajante: el Samsung Galaxy S23 Ultra. Tras haber probado toda la gama alta del año pasado, bajo mi criterio no hubo un solo mod… [+43006 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Apple Newsroom"
+              },
+              "author": "John Gruber",
+              "title": "PCalc, Fantastical, and Over 598 Other Native VisionOS Apps, Are Available in the App Store For Launch Day",
+              "description": "Apple today announced incredible new apps that will be available on Apple Vision Pro beginning Friday, February 2.",
+              "url": "https://www.apple.com/newsroom/2024/02/apple-announces-more-than-600-new-apps-built-for-apple-vision-pro/",
+              "urlToImage": "https://www.apple.com/newsroom/images/2024/02/apple-announces-more-than-600-new-apps-built-for-apple-vision-pro/tile/Apple-Vision-Pro-app-experiences-visionOS-home-lp.jpg.og.jpg?202402012135",
+              "publishedAt": "2024-02-01T23:52:55Z",
+              "content": "February 1, 2024\r\nUPDATE\r\nApple announces more than 600 new apps built for Apple Vision Pro\r\nAll-new spatial apps built for Apple Vision Pro join more than 1 million compatible apps available on the … [+14333 chars]"
+            },
+            {
+              "source": {
+                "id": "ign",
+                "name": "IGN"
+              },
+              "author": "Brian Barnett",
+              "title": "Claim a Key for Hellcard, the Turn-Based Deckbuilding Rogue-Lite From Book of Demons Developer",
               "description": null,
-              "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_189ec697-7a51-41de-b63b-74aa7a1f9ed9",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T09:00:26Z",
-              "content": "Si vous cliquez sur « Tout accepter », nos partenaires (y compris 244 qui font partie du Cadre de transparence et de consentement dIAB) et nous utiliserons également des témoins et vos données person… [+982 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Yahoo Entertainment"
-              },
-              "author": null,
-              "title": "Voiding Elon Musk’s $56 billion Tesla pay plan is a 'wake-up call' for directors at all companies",
-              "description": null,
-              "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_933fa1c3-9d41-41b7-b520-ebfdea5780c2",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T09:00:26Z",
-              "content": "Si vous cliquez sur « Tout accepter », nos partenaires (y compris 244 qui font partie du Cadre de transparence et de consentement dIAB) et nous utiliserons également des témoins et vos données person… [+982 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Autobild.de"
-              },
-              "author": "AUTO BILD",
-              "title": "Autohersteller unter Druck wegen Xinjiang-Aluminium",
-              "description": "Zwischen Profit und Ethik: Der schwierige Stand internationaler Autohersteller zu Xinjiang",
-              "url": "https://www.autobild.de/artikel/human-rights-watch-kritisiert-autohersteller-25144691.html",
-              "urlToImage": "https://i.auto-bild.de/ir_img/3/5/3/4/7/5/7/Symbol_16_9-c1d4fe60618152e2.jpg?impolicy=og_images",
-              "publishedAt": "2024-02-01T08:54:00Z",
-              "content": "(dpa/AUTO BILD/KI) Internationale Autohersteller stehen laut der Menschenrechtsorganisation Human Rights Watch (HRW) in der Kritik, nicht ausreichend gegen die Verwendung von Zwangsarbeit in der chin… [+2095 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Iz.ru"
-              },
-              "author": "Валентина Пескова",
-              "title": "Маск задумался о перерегистрации компании Tesla в Техас",
-              "description": "Американский миллиардер и бизнесмен Илон Маск 1 февраля сообщил, что акционеры компании Tesla в ближайшее время проголосуют по вопросу перенесения регистрации компании в штат Техас.«Общественное голосование однозначно говорит в пользу Техаса! Tesla немедленно…",
-              "url": "https://iz.ru/1643301/2024-02-01/mask-zadumalsia-o-pereregistratcii-kompanii-tesla-v-tekhas",
-              "urlToImage": "http://cdn.iz.ru/sites/default/files/styles/900x506/public/news-2024-02/20140318_rua_r19_091%20copy.jpg?itok=3SSOYrWY",
-              "publishedAt": "2024-02-01T08:49:27Z",
-              "content": "1 , Tesla .\r\n« ! Tesla », X (. Twitter).\r\n , Tesla , - . (87,1%) «».\r\nCNBC, $56 , Tesla 2018 . , .\r\nThe New York Times , « » , , Tesla . , , , , .\r\n , 1 , Forbes , 10 $50 $1,32 . , , , , 14%, . Tesla… [+4 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Pulse Live Kenya"
-              },
-              "author": "Kwan Wei Kevin Tan",
-              "title": "Hundreds of business execs just ranked Elon Musk America's most overrated CEO",
-              "description": "Elon Musk has been judged by his peers, and the verdict will probably not make him very happy. A survey of hundreds of business executives conducted by Fortune just ranked Musk as Americas most overrated CEO.",
-              "url": "https://www.pulselive.co.ke/business/international/hundreds-of-business-execs-just-ranked-elon-musk-americas-most-overrated-ceo/95z7fg1#article",
-              "urlToImage": "https://ocdn.eu/pulscms-transforms/1/y4gktkuTURBXy9kNTAzMGU0NC04OWZlLTRkYTktOWVhMC00MjNhNDVmNTQ1NjcuanBlZ5GTBc0EsM0Cdg",
-              "publishedAt": "2024-02-01T08:48:51Z",
-              "content": "Fortune published the survey results on Wednesday after asking hundreds of CEOs to rank their most overrated and underrated peers. Fortune did not specify exactly how many CEOs had responded to the s… [+1147 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Les Numériques"
-              },
-              "author": "Aurélien Piot",
-              "title": "Actualité : Automobile : Toyota reste n°1 mondial des ventes, mais avec moins de 1 % de voitures électriques",
-              "description": "Le groupe Toyota reste le premier constructeur automobile mondial pour la quatrième année consécutive, avec plus de 11,2 millions de véhicules écoulés en 2023. La part des voitures électriques dans ce total est cependant inférieure à 1 %.",
-              "url": "https://www.lesnumeriques.com/voiture/automobile-toyota-reste-n01-mondial-des-ventes-mais-avec-moins-de-1-de-voitures-electriques-n218201.html",
-              "urlToImage": "https://cdn.lesnumeriques.com/optim/news/21/218201/f1188a69-toyota-reste-le-numero-des-ventes-mondiales-mais-avec-moins-de-1-de-voitures-electriques__1200_630__0-204-2160-1338_wtmk.jpg",
-              "publishedAt": "2024-02-01T08:46:00Z",
-              "content": "Si Toyota a cédé en 2023 le titre de la voiture la plus vendue au monde à Tesla, avec son Model Y, le groupe japonais reste le premier constructeur automobile mondial. Ainsi, le groupe Toyota a écoul… [+2878 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Naftemporiki.gr"
-              },
-              "author": "Ελίζα Καραγιώργη",
-              "title": "Από τους Χούθι στον…Ερντογάν. Πόσο κινδυνεύουν οι θάλασσες της νότιας Ευρώπης",
-              "description": "Τα προϊόντα από την Ασία δεν φτάνουν στην Ευρώπη ή φτάνουν πολύ αργά. Οι γραμμές παραγωγής στα εργοστάσια αυτοκινήτων έχουν σταματήσει και οι ανοιξιάτικες συλλογές που προορίζονται για ευρωπαϊκά πολυκαταστήματα…\nΑπό τους Χούθι στον…Ερντογάν. Πόσο κινδυνεύουν …",
-              "url": "https://www.naftemporiki.gr/maritime/1580527/apo-toys-choythi-stonerntogan-poso-kindyneyoyn-oi-thalasses-tis-notias-eyropis/",
-              "urlToImage": "https://www.naftemporiki.gr/wp-content/uploads/2024/01/erythra-thalassa-ploia.jpg",
-              "publishedAt": "2024-02-01T08:43:37Z",
-              "content": ". . , , .\r\n« , », «» . « , ».\r\n logistics Flexport, 2.400 , 6.800 .\r\n. , «Marks &amp; Spencer» , . 40% 50% , .\r\n ,   . Flexport, . « . , « ».\r\n . Volvo , . Tesla , , Suzuki .\r\n« » . , BCA Research, :… [+189 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Hdmotori.it"
-              },
-              "author": "HDblog.it",
-              "title": "Quello che non sapevo sul parabrezza (rotto della mia Tesla) e sulla tecnologia",
-              "description": "Le curiosità sui parabrezza dall'intervista al Technical Manager di Carglass",
-              "url": "https://www.hdmotori.it/tesla/speciali/n577907/parabrezza-tesla-riparazione-obd-carglass/",
-              "urlToImage": "https://hd2.tudocdn.net/1139456?w=1920",
-              "publishedAt": "2024-02-01T08:40:00Z",
-              "content": "L'inverno è stato impietoso con il parabrezza della mia Model 3 che, come forse saprete, non disdegna di viaggiare a velocità sostenute e prevalentemente in autostrada, lo scenario dove detriti e pic… [+7560 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "finance.yahoo.com",
-              "title": "2 Stocks That Deserve to Join the Magnificent 7",
-              "description": "The Magnificent Seven group, which was crafted by Mad Money host Jim Cramer, is renowned for its impressive growth potential and its ability to roll with the economic punches. With shares of Tesla (NASDAQ:TSLA) now on the outside looking in (Cramer removed it…",
-              "url": "https://biztoc.com/x/9e4301b23109d366",
-              "urlToImage": "https://c.biztoc.com/p/9e4301b23109d366/s.webp",
-              "publishedAt": "2024-02-01T08:38:06Z",
-              "content": "The Magnificent Seven group, which was crafted by Mad Money host Jim Cramer, is renowned for its impressive growth potential and its ability to roll with the economic punches. With shares of Tesla (N… [+297 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "ETF Daily News"
-              },
-              "author": "MarketBeat News",
-              "title": "Analysts Set Tesla, Inc. (NASDAQ:TSLA) Target Price at $224.00",
-              "description": "Tesla, Inc. (NASDAQ:TSLA – Get Free Report) has been given a consensus rating of “Hold” by the thirty-four brokerages that are covering the firm, MarketBeat Ratings reports. Eight equities research analysts have rated the stock with a sell recommendation, six…",
-              "url": "https://www.etfdailynews.com/2024/02/01/analysts-set-tesla-inc-nasdaqtsla-target-price-at-224-00/",
-              "urlToImage": "https://www.americanbankingnews.com/wp-content/timthumb/timthumb.php?src=https://www.marketbeat.com/logos/tesla-inc-logo-1200x675.png?v=20221020135629&w=240&h=240&zc=2",
-              "publishedAt": "2024-02-01T08:36:42Z",
-              "content": "Tesla, Inc. (NASDAQ:TSLA – Get Free Report) has been given a consensus rating of “Hold” by the thirty-four brokerages that are covering the firm, MarketBeat Ratings reports. Eight equities research a… [+6041 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "newsweek.com",
-              "title": "Elon Musk to move Tesla to Texas",
-              "description": "Electric car company Tesla will begin the process of transferring where it is legally registered to Texas following an online poll, its CEO Elon Musk has announced. The company had been incorporated in Delaware, but on Wednesday, Musk asked users on X, former…",
-              "url": "https://biztoc.com/x/505abb8d39cc5aa1",
-              "urlToImage": "https://c.biztoc.com/p/505abb8d39cc5aa1/s.webp",
-              "publishedAt": "2024-02-01T08:36:05Z",
-              "content": "Electric car company Tesla will begin the process of transferring where it is legally registered to Texas following an online poll, its CEO Elon Musk has announced.The company had been incorporated i… [+295 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Slashdot.org"
-              },
-              "author": "feedfeeder",
-              "title": "Tesla sued by 25 California counties for allegedly mishandling hazardous waste",
-              "description": "Tesla is facing a lawsuit from 25 California counties accusing it of mishandling hazardous waste at facilities around the state, according to a complaint filed in San Joaquin County Superior Court. The lawsuit, which seeks civil penalties and an injunction fo…",
-              "url": "https://slashdot.org/firehose.pl?op=view&amp;id=172929124",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T08:33:28Z",
-              "content": "Tesla is facing a lawsuit from 25 California counties accusing it of mishandling hazardous waste at facilities around the state, according to a complaint filed in San Joaquin County Superior Court. T… [+1705 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Marketscreener.com"
-              },
-              "author": null,
-              "title": "Tesla to Hold Shareholder Vote to Incorporate in Texas, Elon Musk Says",
-              "description": "(marketscreener.com) \n By Sherry Qin \n\n\n Tesla will hold a shareholder vote to decide whether to transfer its state of incorporation to Texas, Chief Executive Elon Musk said. \n\n Musk's decision comes after a Delaware court ordered him to give up a Tesla compe…",
-              "url": "https://www.marketscreener.com/business-leaders/ELON-MUSK-1364/news/Tesla-to-Hold-Shareholder-Vote-to-Incorporate-in-Texas-Elon-Musk-Says-45861598/",
-              "urlToImage": "https://www.marketscreener.com/images/twitter_MS_fdblanc.png",
-              "publishedAt": "2024-02-01T08:30:05Z",
-              "content": "Mr. Elon R. Musk is a Chief Executive Officer at The Boring Co., a Technoking of Tesla at Tesla, Inc., a Chief Executive Officer &amp; Director at Space Exploration Technologies Corp., a Chief Execut… [+991 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "3dnews.ru"
-              },
-              "author": null,
-              "title": "Маск проведёт голосование акционеров по переносу Tesla в Техас после проигранного суда на $56 млрд",
-              "description": "Поскольку накануне суд в штате Делавэр, где изначально была зарегистрирована компания Tesla, признал избыточным назначенный генеральному директору Илону Маску (Elon Musk) компенсационный пакет на сумму около $56 млрд, миллиардер бросился защищать свои интерес…",
-              "url": "https://3dnews.ru/1099646/ilon-mask-poobeshchal-vinesti-vopros-o-pereregistratsii-tesla-v-tehase-na-golosovanie-aktsionerov",
-              "urlToImage": "https://3dnews.ru/assets/external/illustrations/2024/02/01/1099646/tesla_01.jpg",
-              "publishedAt": "2024-02-01T08:29:00Z",
-              "content": ", Tesla, (Elon Musk) $56 , . , Tesla , - , .\r\n: Tesla, X\r\n, Tesla, , , . 2020 - , . - Tesla , -.\r\n X Tesla . , . , Tesla ."
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Www.is.fi"
-              },
-              "author": "Tommi Lempinen",
-              "title": "Mitä maksaa ja paljonko dieseliä palaa, kun sähköauto ladataankin aggregaatilla?",
-              "description": "Dieselkokeen testiautoina toimivat Tesla Model S P85D ja Volvo V40 D2.",
-              "url": "https://www.is.fi/autot/art-2000010196409.html",
-              "urlToImage": "https://is.mediadelivery.fi/img/some/default/a0da9417cb3f39a1d3037e0f578b964d.jpg",
-              "publishedAt": "2024-02-01T08:28:00Z",
-              "content": "Dieselkokeen testiautoina toimivat Tesla Model S P85D ja Volvo V40 D4.Jos Tesla Model S:n lataa dieselaggregaatilla, vastaa auton sadalla kilometrillä käyttämä sähköenergia 4,46 litraa dieseliä.\r\nTai… [+1535 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Mail.ru"
-              },
-              "author": "Авто Mail.ru",
-              "title": "Звезду сериала «Зачарованные» раскритиковали из-за Porsche",
-              "description": "Алиссу Милано недавно сфотографировали с ее новеньким электрическим Porsche Taycan 4S, после чего она попала под шквал критики в социальных сетях",
-              "url": "https://auto.mail.ru/article/91255-zvezdu-seriala-zacharovannyie-raskritikovali-iz-za/",
-              "urlToImage": "https://resizer.mail.ru/p/e2f6fb57-aab9-556c-acd7-28abadb1ca3a/AQABjgEL4r1CD1c129CiEhHKQXxxluvCexPma5JvBptmGlBU4HoaO1VCXGeBCRizWkakp09GRfvmyQrA94C2AO61akc.jpg",
-              "publishedAt": "2024-02-01T08:27:35Z",
-              "content": "Tesla   Volkswagen ID4.     Porsche Taycan 4S 2023 ."
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "wsj.com",
-              "title": "Tesla to Hold Shareholder Vote to Incorporate in Texas",
-              "description": "Tesla will hold a shareholder vote to decide whether to transfer its state of incorporation to Texas, Chief Executive Elon Musk said. #tesla #elonmusk",
-              "url": "https://biztoc.com/x/957feba76b24fd23",
-              "urlToImage": "https://c.biztoc.com/266/og.png",
-              "publishedAt": "2024-02-01T08:26:06Z",
-              "content": "Tesla will hold a shareholder vote to decide whether to transfer its state of incorporation to Texas, Chief Executive Elon Musk said.\r\n#tesla#elonmusk\r\nThis story appeared on wsj.com, 2024-02-01."
-            },
-            {
-              "source": {
-                "id": "next-big-future",
-                "name": "Next Big Future"
-              },
-              "author": "Brian Wang",
-              "title": "Elon Will Move Tesla Incorporation to Texas Then Get a New CEO Compensation Plan",
-              "description": "Tesla will moves its state of incorporation from Delaware to Texas. This will be approved by shareholders. Corporate license fees accounted for 12.1 percent of Delaware’s state and local general revenue in 2021. The license fees are $1,814 per capita. 60% of …",
-              "url": "https://www.nextbigfuture.com/2024/02/elon-will-move-tesla-incorporation-to-texas-then-get-a-new-ceo-compensation-plan.html",
-              "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2024/02/Screen-Shot-2024-02-01-at-12.08.11-AM.jpg",
-              "publishedAt": "2024-02-01T08:23:59Z",
-              "content": "Tesla will moves its state of incorporation from Delaware to Texas. This will be approved by shareholders.\r\nCorporate license fees accounted for 12.1 percent of Delawares state and local general reve… [+3723 chars]"
-            },
-            {
-              "source": {
-                "id": "newsweek",
-                "name": "Newsweek"
-              },
-              "author": "Aleks Phillips",
-              "title": "Elon Musk To Move Tesla to Texas",
-              "description": "The billionaire CEO announced the electric car company would be incorporated in the Lone Start State following an online poll.",
-              "url": "https://www.newsweek.com/elon-musk-move-tesla-texas-incorporation-1865897",
-              "urlToImage": "https://d.newsweek.com/en/full/2343309/elon-musk-texas.jpg",
-              "publishedAt": "2024-02-01T08:23:41Z",
-              "content": "Electric car company Tesla will begin the process of transferring where it is legally registered to Texas following an online poll, its CEO Elon Musk has announced.\r\nThe company had been incorporated… [+2065 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "The Boston Globe"
-              },
-              "author": "SIMINA MISTREANU",
-              "title": "Major automakers may be using Chinese aluminum produced with Uyghur forced labor, rights group says",
-              "description": "A new report says automakers including Tesla, General Motors, Volkswagen, and Toyota are failing to ensure they are not using forced labor as part of their China supply chains.",
-              "url": "https://www.bostonglobe.com/2024/02/01/business/major-automakers-may-be-using-chinese-aluminum-produced-with-uyghur-forced-labor-rights-group-says/",
-              "urlToImage": "https://bostonglobe-prod.cdn.arcpublishing.com/resizer/D4kIOR1g2D5XFf3Z5P0h3bmcVRw=/506x0/cloudfront-us-east-1.images.arcpublishing.com/bostonglobe/X435RQXQCMKM7DW7VDGOX5BKA4.jpg",
-              "publishedAt": "2024-02-01T08:20:55Z",
-              "content": "A United Nations report in 2022 found China may have committed crimes against humanity in Xinjiang, where more than 1 million Uyghurs are estimated to have been arbitrarily detained as part of measur… [+4034 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "[Removed]"
-              },
-              "author": null,
-              "title": "[Removed]",
-              "description": "[Removed]",
-              "url": "https://removed.com",
-              "urlToImage": null,
-              "publishedAt": "1970-01-01T00:00:00Z",
-              "content": "[Removed]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Yahoo Entertainment"
-              },
-              "author": "Steve Dent",
-              "title": "Tesla sued by 25 California counties for allegedly mishandling hazardous waste",
-              "description": "Tesla is facing a lawsuit from 25 California counties accusing it of mishandling hazardous waste at facilities around the state, according to a complaint filed in San Joaquin County Superior Court. The lawsuit, which seeks civil penalties and an injunction fo…",
-              "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_60b31551-702a-4805-842b-bddc6b17e430",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T08:20:34Z",
-              "content": "Si vous cliquez sur « Tout accepter », nos partenaires (y compris 244 qui font partie du Cadre de transparence et de consentement dIAB) et nous utiliserons également des témoins et vos données person… [+982 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Yahoo Entertainment"
-              },
-              "author": null,
-              "title": "Tesla sued by 25 California counties for allegedly mishandling hazardous waste",
-              "description": null,
-              "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_166775d5-c721-4532-9e18-b5a8c4f71e1f",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T08:20:34Z",
-              "content": "Si vous cliquez sur « Tout accepter », nos partenaires (y compris 244 qui font partie du Cadre de transparence et de consentement dIAB) et nous utiliserons également des témoins et vos données person… [+982 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "[Removed]"
-              },
-              "author": null,
-              "title": "[Removed]",
-              "description": "[Removed]",
-              "url": "https://removed.com",
-              "urlToImage": null,
-              "publishedAt": "1970-01-01T00:00:00Z",
-              "content": "[Removed]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Hibridosyelectricos.com"
-              },
-              "author": "Javier Gómara",
-              "title": "Un paso atrás para coger impulso: este fabricante se refugia en los híbridos como paso previo a los eléctricos",
-              "description": "Como siempre decía el Coronel John \"Hannibal\" Smith del Equipo A, \"Me encanta que los planes salgan bien\". Sin embargo, la realidad nos dice que no todos los planes están saliendo como debían. Muchas marcas se han lanzado de cabeza a la piscina eléctrica sin …",
-              "url": "https://www.hibridosyelectricos.com/coches/paso-atras-coger-impulso-este-fabricante-se-refugia-en-hibridos-como-paso-previo-electricos_72775_102.html",
-              "urlToImage": "https://www.hibridosyelectricos.com/uploads/s1/61/75/01/cadillac-detalle_17_2000x1126.jpeg",
-              "publishedAt": "2024-02-01T08:15:28Z",
-              "content": "Como siempre decía el Coronel John Hannibal Smith del Equipo A, Me encanta que los planes salgan bien. Sin embargo, la realidad nos dice que no todos los planes están saliendo como debían. Muchas mar… [+3245 chars]"
-            },
-            {
-              "source": {
-                "id": "focus",
-                "name": "Focus"
-              },
-              "author": "DPA",
-              "title": "Zwangsarbeit - Menschenrechtler kritisieren Autobauer in China",
-              "description": "Human Rights Watch kritisiert internationale Autohersteller für unzureichende Maßnahmen gegen Zwangsarbeit in Xinjiang und fordert dagegen vorzugehen.",
-              "url": "https://www.focus.de/finanzen/news/zwangsarbeit-menschenrechtler-kritisieren-autobauer-in-china_id_259628807.html",
-              "urlToImage": "https://p6.focus.de/img/finanzen/news/id_259628806/haben-hersteller-es-versaeumt-das-risiko-der-zwangsarbeit-in-ihren-aluminium-lieferketten-zu-minimieren-symbolbild-.jpg?im=Crop%3D%280%2C170%2C2048%2C1024%29%3BResize%3D%281200%2C627%29&impolicy=perceptual&quality=mediumHigh&hash=9abcfffb522accaface336ff1213b2da6ea078ce94dc8a049b904894ab69a342",
-              "publishedAt": "2024-02-01T08:15:04Z",
-              "content": "Internationale Autohersteller tun nach Ansicht der Menschenrechtsorganisation Human Rights Watch (HRW) zu wenig gegen Zwangsarbeit in der chinesischen Region Xinjiang.\r\n«Autofirmen kennen das Ausmaß … [+2097 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Globalsecurity.org"
-              },
-              "author": "John Pike",
-              "title": "Press Briefing by Press Secretary Karine Jean-Pierre and NSC Coordinator for Strategic Communications John Kirby",
-              "description": "No description",
-              "url": "https://www.globalsecurity.org/military/library/news/2024/01/mil-240131-whitehouseb01.htm",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T08:12:24Z",
-              "content": "January 31, 2024\r\n1:28 P.M. EST\r\nMS. JEAN-PIERRE: Good afternoon. Hello. \r\nHi. I have a few things at the top before we get started.\r\nAs the Presi- â as the President and his team continue working … [+65172 chars]"
-            },
-            {
-              "source": {
-                "id": "die-zeit",
-                "name": "Die Zeit"
-              },
-              "author": "ZEIT ONLINE: News -",
-              "title": "Zwangsarbeit: Menschenrechtler kritisieren Autobauer in China",
-              "description": "Hier finden Sie Informationen zu dem Thema „Zwangsarbeit“. Lesen Sie jetzt „Menschenrechtler kritisieren Autobauer in China“.",
-              "url": "https://www.zeit.de/news/2024-02/01/menschenrechtler-kritisieren-autobauer-in-china",
-              "urlToImage": "https://img.zeit.de/news/2024-02/01/menschenrechtler-kritisieren-autobauer-in-china-image-group/wide__1300x731",
-              "publishedAt": "2024-02-01T08:11:41Z",
-              "content": "Internationale Autohersteller tun nach Ansicht der Menschenrechtsorganisation Human Rights Watch (HRW) zu wenig gegen Zwangsarbeit in der chinesischen Region Xinjiang.\r\nMehr Schlagzeilen\r\n«Autofirmen… [+3080 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "STERN.de"
-              },
-              "author": "STERN.de",
-              "title": "Zwangsarbeit: Menschenrechtler kritisieren Autobauer in China",
-              "description": "Human Rights Watch kritisiert internationale Autohersteller für unzureichende Maßnahmen gegen Zwangsarbeit in Xinjiang und fordert dagegen vorzugehen.",
-              "url": "https://www.stern.de/wirtschaft/news/zwangsarbeit--menschenrechtler-kritisieren-autobauer-in-china-34418806.html",
-              "urlToImage": "https://image.stern.de/34418808/t/PP/v1/w1440/r1.7778/-/01--urnnewsmldpacom2009010124020199830645v2w800h600l1084t720r3252b2161jpeg---fe7328fd916dd70b.jpg",
-              "publishedAt": "2024-02-01T08:11:41Z",
-              "content": "Human Rights Watch kritisiert internationale Autohersteller für unzureichende Maßnahmen gegen Zwangsarbeit in Xinjiang und fordert dagegen vorzugehen.\r\nInternationale Autohersteller tun nach Ansicht … [+2305 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Overclockers.ru"
-              },
-              "author": "Алексей Сычёв",
-              "title": "Tesla рассмотрит вопрос о переносе регистрации компании в Техас после вердикта суда о взыскании с Маска $56 млрд",
-              "description": "Вместе с гололедицей февраль приносит переносицу.",
-              "url": "https://overclockers.ru/hardnews/show/131863/tesla-rassmotrit-vopros-o-perenose-registracii-kompanii-v-tehas-posle-verdikta-suda-o-vzyskanii-s-maska-56-mlrd",
-              "urlToImage": "https://overclockers.ru/st/images/preview/MVOBRtID4MM6XRrS.jpg",
-              "publishedAt": "2024-02-01T08:07:00Z",
-              "content": ", (Elon Musk) $56 Tesla, . Bloomberg X , Tesla .\r\n , , . Tesla , . , , $56 . , , , ."
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Hvg.hu"
-              },
-              "author": "hvg@hvg.hu",
-              "title": "Úgy mutatta meg Elon Musk a Tesla emberszabású robotját, ahogy eddig sosem láthattuk – videó",
-              "description": "A Tesla humanoid robotja, az Optimus eddig csak védőburkolattal jelent meg a nagyközönség előtt, Elon Musk azonban egy olyan videót tett közzé, melyen már anélkül sétálgat.",
-              "url": "https://hvg.hu/tudomany/20240201_tesla_optimus_humanoid_robot_boritas_nelkul_video",
-              "urlToImage": "https://api.hvg.hu/Img/7fcefbf8-ac48-4ee6-aef5-32203afa118c/65be0d7e-5864-468a-b39a-20b81cfc6c4e.jpg",
-              "publishedAt": "2024-02-01T08:03:00Z",
-              "content": "Rövid idn belül már a második videóval jelentkezik Elon Musk a Tesla humanoid robotjáról, Optimusról. Az X-en közzétett felvételen a szerkezet ezúttal semmilyen összetett feladatot nem végez el, csup… [+1439 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "taz.de"
-              },
-              "author": "taz. die tageszeitung",
-              "title": "Zwangsarbeit in China: Vorwürfe gegen Autohersteller",
-              "description": "Chinesische Aluminiumhersteller sollen Uiguren in Zwangsarbeit beschäftigen. Die Autokonzerne hätten das zu wenig im Blick, sagen Menschenrechtler.",
-              "url": "https://taz.de/Zwangsarbeit-in-China/!5989678/",
-              "urlToImage": "https://taz.de/picture/6800507/948/aluminium-1.jpeg",
-              "publishedAt": "2024-02-01T08:02:00Z",
-              "content": "Chinesische Aluminiumhersteller sollen Uiguren in Zwangsarbeit beschäftigen. Die Autokonzerne hätten das zu wenig im Blick, sagen Menschenrechtler.\r\n9 Prozent des weltweit angebotenen Aluminiums stam… [+2414 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "El Financiero"
-              },
-              "author": "Madlin Mekelburg/Bloomberg",
-              "title": "¿Tesla se va a Texas? Elon Musk sugiere hacer la ‘mudanza’ tras rechazo a su bono salarial",
-              "description": "Elon Musk amenaza con trasladar la incorporación de Tesla a Texas desde Delaware, después de que un juez anulara su paquete de compensación de 55 mil millones de dólares.",
-              "url": "https://www.elfinanciero.com.mx/bloomberg/2024/02/01/tesla-se-va-a-texas-elon-musk-sugiere-hacer-la-mudanza-tras-rechazo-a-su-bono-salarial/",
-              "urlToImage": "https://www.elfinanciero.com.mx/resizer/FbZ31DhTftNWJXCV8d8bHMPv_Dk=/1200x630/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/O65RAS3WMZEJBMXUPW4O2CY2SU.jpg",
-              "publishedAt": "2024-02-01T08:01:00Z",
-              "content": "Elon Muskquiere profundizar sus vínculos con Texas. Ya amplió un sitio de lanzamiento de SpaceX en el sur de este estado, trasladó la oficina central de Tesla Inc. a Austin desde Palo Alto, Californi… [+6289 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Blogdumoderateur.com"
-              },
-              "author": "Matthieu Eugène",
-              "title": "Le futur de la tech : 10 tendances à surveiller en 2024",
-              "description": "La dernière édition du rapport \"The Future 100\" dévoile les 100 tendances qui feront 2024, dont celles consacrées au secteur de la tech.",
-              "url": "https://www.blogdumoderateur.com/tendances-tech-2024/",
-              "urlToImage": "https://f.hellowork.com/blogdumoderateur/2024/01/The-Future-100-tendances-tech-1200x628.jpg",
-              "publishedAt": "2024-02-01T08:00:21Z",
-              "content": "La 10e édition du rapport « The Future 100 » a été dévoilée par VML Intelligence, nouvelle structure issue de l’association de l’agence de communication Wunderman Thompson et de VMLY&amp;R. Il offre … [+10724 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "El Financiero"
-              },
-              "author": "Bloomberg / Gabrielle Coppola y Ed Ludlow",
-              "title": "¿Nueva planta de Tesla? Elon Musk abrirá una nueva ‘mini factory’ de baterías para autos eléctricos",
-              "description": "Tesla está por construir una nueva fábrica de baterías para autos eléctricos en Nevada, Estados Unidos.",
-              "url": "https://www.elfinanciero.com.mx/empresas/2024/02/01/tesla-nueva-mini-factory-baterias-en-nevada-para-autos-electricos-elon-musk/",
-              "urlToImage": "https://www.elfinanciero.com.mx/resizer/VXIGbGj2MH5WS5JuW5CMRbuOh5A=/1200x630/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/XMXJTPVSIRHWJJEWC3KZO7WPZI.jpg",
-              "publishedAt": "2024-02-01T07:57:30Z",
-              "content": "Tesla Inc. ampliará la producción de baterías en Nevada, abriendo una pequeña instalación utilizando equipos inactivos de Contemporary Amperex Technology Co. de China, según personas familiarizadas c… [+3245 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "benzinga.com",
-              "title": "Tesla Faces Lawsuit From 25 California Counties Over Alleged Improper Handling Of Hazardous Waste",
-              "description": "Tesla Inc TSLA is now facing a lawsuit from 25 California counties over its alleged improper handling of hazardous waste materials at its facilities across the state. What Happened: The lawsuit, titled The People of California v. Tesla, was filed in a Califor…",
-              "url": "https://biztoc.com/x/3682b2a18ea11249",
-              "urlToImage": "https://c.biztoc.com/p/3682b2a18ea11249/s.webp",
-              "publishedAt": "2024-02-01T07:56:06Z",
-              "content": "Tesla Inc TSLA is now facing a lawsuit from 25 California counties over its alleged improper handling of hazardous waste materials at its facilities across the state.What Happened: The lawsuit, title… [+314 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Novinky.cz"
-              },
-              "author": "Ondřej Mára",
-              "title": "Nová auta prodávaná v Evropě musí mít od července povinně černé skříňky",
-              "description": "Nové automobily prodávané v zemích EU budou povinně vybaveny zařízením označovaným jako EDR, které bude mít podobnou funkci jako černé skříňky používané v letectví.",
-              "url": "https://www.novinky.cz/clanek/auto-nova-auta-prodavana-v-evrope-musi-mit-od-cervence-povinne-cerne-skrinky-40459057",
-              "urlToImage": "https://d15-a.sdn.cz/d_15/c_img_QL_1/HjCHc/mercedes-benz-mercedes-benz-eqa-eqs-suv-crash-narazovy-test.jpeg?fl=cro,0,180,1920,1080%7Cres,1200,,1%7Cwebp,75",
-              "publishedAt": "2024-02-01T07:53:00Z",
-              "content": "Zatímco letadla jsou ernými skíkami povinn vybavována od edesátých let, vechna nová auta prodávaná na území EU je budou muset mít od ervence 2024. \r\nV tu dobu toti vstoupí v platnost naízení, podle k… [+1617 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "heise online"
-              },
-              "author": "Martin Franz, mit Material der dpa",
-              "title": "Human Rights Watch kritisiert Autoindustrie​: Zwangsarbeit in Xinjiang",
-              "description": "Knapp 10 Prozent des weltweit hergestellten Aluminiums kommt aus Xinjiang. Dort gäbe es Zwangsarbeit, kritisiert Human Rights Watch.​",
-              "url": "https://www.heise.de/news/Human-Rights-Watch-kritisiert-Autoindustrie-Zwangsarbeit-in-Xinjiang-9615068.html",
-              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/5/2/9/0/09-91340625f9614107.jpg",
-              "publishedAt": "2024-02-01T07:53:00Z",
-              "content": "Erst im Dezember 2023 hatte ein Bericht Volkswagen zum Teil entlastet, doch die Kritik an den Arbeitsbedingungen in der chinesischen Region Xinjiang reißt nicht ab. Die Menschenrechtsorganisation Hum… [+3334 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Rg.ru"
-              },
-              "author": null,
-              "title": "Акционеры Tesla срочно проголосуют о смене места регистрации и переезде компании",
-              "description": "Производитель автомобилей Tesla в срочном порядке проведет голосование акционеров для изменения места регистрации компании с Делавэра на Техас. Об этом сообщил глава компании Илон Маск в соцсетях.",
-              "url": "https://rg.ru/2024/02/01/akcionery-tesla-srochno-progolosuiut-o-smene-mesta-registracii-i-pereezde-kompanii.html",
-              "urlToImage": "https://cdnstatic.rg.ru/uploads/images/2024/02/01/1_b93a4b4f_6a8.jpg",
-              "publishedAt": "2024-02-01T07:43:04Z",
-              "content": "31 Tesla 2018 55,8 . .\r\n\" , - X ( Twitter, ) . - , , \".\r\n , 87,1 ."
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Autocar"
-              },
-              "author": "Nick Gibbs",
-              "title": "The stock market has fallen out of love with electric cars",
-              "description": "Renault cited \"current equity market conditions\" for cancelling its plan to list Ampere\n\n\nRenault's decision to cancel Ampere division's IPO is the latest in a long line of recent investor snubs\n\nRenault’s decision to cancel the stock market listing of its Am…",
-              "url": "https://www.autocar.co.uk/car-news/business-corporate/stock-market-has-fallen-out-love-electric-cars",
-              "urlToImage": "https://www.autocar.co.uk/sites/autocar.co.uk/files/images/car-reviews/first-drives/legacy/renault-5-concept-front-quarter.jpg",
-              "publishedAt": "2024-02-01T07:41:42Z",
-              "content": "Renaults decision to cancel the stock market listing of its Ampere division is the latest in a series of postponements, cancellations or for those that did float mistimed listings for EV-angled busin… [+523 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Slashdot.org"
-              },
-              "author": "feedfeeder",
-              "title": "Winning lawyers in Elon Musk's $56bn pay dispute in line for fee bonanza - Financial Times",
-              "description": "Winning lawyers in Elon Musk's $56bn pay dispute in line for fee bonanzaFinancial Times Who can rein in Elon Musk? Someone you’ve probably never heard ofCNN The Elon Musk pay dilemmaFinancial Times Elon Musk's $56 billion Tesla compensation voided by judge, s…",
-              "url": "https://slashdot.org/firehose.pl?op=view&amp;id=172928468",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T07:32:42Z",
-              "content": "Sign up for the Slashdot newsletter! OR check out the new Slashdot job board to browse remote jobs or jobs in your areaDo you develop on GitHub? You can keep using GitHub but automatically sync your … [+268 chars]"
-            },
-            {
-              "source": {
-                "id": "the-times-of-india",
-                "name": "The Times of India"
-              },
-              "author": "Reuters",
-              "title": "Elon Musk seeks Tesla shareholder vote on moving incorporation to Texas",
-              "description": "Tesla will hold a shareholder vote to transfer its state of incorporation to Texas from Delaware, days after a judge invalidated Elon Musk's $56 billion pay package. Musk, who shifted Tesla's headquarters to Austin, Texas in 2021, plans to move the company's …",
-              "url": "https://economictimes.indiatimes.com/tech/technology/elon-musk-seeks-tesla-shareholder-vote-on-moving-incorporation-to-texas/articleshow/107318951.cms",
-              "urlToImage": "https://img.etimg.com/thumb/msid-107318972,width-1200,height-630,imgsize-1348138,overlay-ettech/photo.jpg",
-              "publishedAt": "2024-02-01T07:31:02Z",
-              "content": "Tesla will hold a shareholder vote to transfer its state of incorporation to Texas from Delaware, CEO Elon Musk said on Thursday, days after a judge invalidated his $56 billion pay package at the ele… [+2925 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Gazeta.ru"
-              },
-              "author": "Газета.Ru",
-              "title": "Акционеры Tesla проголосуют по вопросу перерегистрации компании",
-              "description": "Американский автопроизводитель Tesla в срочном порядке проведет голосование акционеров по вопросу изменения места регистрации компании с Делавэра на Техас. Об этом сообщил генеральный директор компании Илон Маск в социальной сети X (бывшая Twitter).",
-              "url": "https://www.gazeta.ru/business/news/2024/02/01/22238203.shtml",
-              "urlToImage": "https://img.gazeta.ru/files3/621/17887621/AP23321513380639-pic_32ratio_900x600-900x600-52900.jpg",
-              "publishedAt": "2024-02-01T07:28:23Z",
-              "content": ": .Ru (Gazeta.Ru)\r\n: «.», 1067761730376, 7743625728\r\n : 125239, , , , 67\r\n:\r\n117105,\r\n. ,\r\n , .9, .1"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Portfolio.hu"
-              },
-              "author": "Portfolio.hu",
-              "title": "Bedühödött Elon Musk, elköltöztetné a Teslát",
-              "description": "Elon Musk Delaware államból Texasba költöztetné a Teslát, erről már csak a részvényeseket kell megkérdezni, írja a Reuters. Hasonló témákról szó lesz a Portfolio Investment Day 2024 rendezvényünkön, amire itt lehet regisztrálni.",
-              "url": "https://www.portfolio.hu/uzlet/20240201/beduhodott-elon-musk-elkoltoztetne-a-teslat-666543",
-              "urlToImage": "https://pcdn.hu/articles/images-xl/e/l/o/elon-musk-654301.jpg",
-              "publishedAt": "2024-02-01T07:28:00Z",
-              "content": "A Teslát Delaware államban jegyezték be, ott van fizikai központja is a cégnek, Elon Musk viszont azt szeretné, hogy egy másik államba, Texasba költözzön át a cég.\r\nErrl már meg is kérdezte a követit… [+1146 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Svethardware.cz"
-              },
-              "author": "Milan Šurkala",
-              "title": "Soud zatrhl Muskovi odměnu 55 mld. USD, je prý nesmyslně vysoká",
-              "description": "Odměny Elona Muska za vedení Tesly jsou navázány na předem stanovené cíle. Splnění všech cílů mělo vyústit v odměnu v hodnotě 55 miliard USD (1260 mld. Kč). Tu mu ale soud v Delawaru zatrhl.",
-              "url": "https://www.svethardware.cz/soud-zatrhl-muskovi-odmenu-55-mld-usd-je-pry-nesmyslne-vysoka/60372",
-              "urlToImage": "https://www.svethardware.cz/soud-zatrhl-muskovi-odmenu-55-mld-usd-je-pry-nesmyslne-vysoka/60372/img/elon-musk-tesla-800.webp",
-              "publishedAt": "2024-02-01T07:27:17Z",
-              "content": "Should Tesla change its state of incorporation to Texas, home of its physical headquarters?\r\n— Elon Musk (@elonmusk) January 31, 2024"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Yahoo Entertainment"
-              },
-              "author": null,
-              "title": "Elon Musk vows to shift Tesla incorporation to Texas after judge blocks $56bn payout",
-              "description": null,
-              "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_08e85286-c843-4155-9a98-4f8a6598bbd3",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T07:27:09Z",
-              "content": "Si vous cliquez sur « Tout accepter », nos partenaires (y compris 244 qui font partie du Cadre de transparence et de consentement dIAB) et nous utiliserons également des témoins et vos données person… [+982 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Yahoo Entertainment"
-              },
-              "author": null,
-              "title": "Tesla: Elon Musk moves to shift firm's legal home to Texas",
-              "description": null,
-              "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_a3c6af7e-d669-4c3f-a7d3-9aa89e342985",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T07:23:24Z",
-              "content": "Si vous cliquez sur « Tout accepter », nos partenaires (y compris 244 qui font partie du Cadre de transparence et de consentement dIAB) et nous utiliserons également des témoins et vos données person… [+982 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "BBC News"
-              },
-              "author": null,
-              "title": "Tesla: Elon Musk moves to shift firm's legal home to Texas",
-              "description": "The multi-billionaire says the electric car maker will move immediately to hold a shareholder vote on the matter.",
-              "url": "https://www.bbc.com/news/business-68163184",
-              "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/E859/production/_132518495_gettyimages-1963454334.jpg",
-              "publishedAt": "2024-02-01T07:23:24Z",
-              "content": "By Mariko OiBusiness reporter\r\nElon Musk says Tesla will move immediately to hold a shareholder vote on shifting the firm's legal home from the US state of Delaware to Texas.\r\nIt comes after a judge … [+1641 chars]"
-            },
-            {
-              "source": {
-                "id": "lenta",
-                "name": "Lenta"
-              },
-              "author": "Вячеслав Агапов",
-              "title": "Маск решил зарегистрировать Tesla в штате Техас",
-              "description": "Tesla незамедлительно проведет голосование акционеров по вопросу изменения места регистрации компании с Делавэра на Техас.",
-              "url": "https://lenta.ru/news/2024/02/01/mask-reshil-zaregistrirovat-tesla-v-shtate-tehas/",
-              "urlToImage": "https://icdn.lenta.ru/images/2024/02/01/10/20240201101727256/share_4dcd3cd086a74e8e13f3dc613971edf6.jpg",
-              "publishedAt": "2024-02-01T07:21:05Z",
-              "content": ": Leon Neal / Pool / Reuters"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "bbc.co.uk",
-              "title": "Tesla: Elon Musk moves to shift firm's legal home to Texas",
-              "description": "Elon Musk says Tesla will move immediately to hold a shareholder vote on shifting the firm's legal home from the US state of Delaware to Texas. After the ruling, he posted on social media: \"Never incorporate your company in the state of Delaware.\" Many big fi…",
-              "url": "https://biztoc.com/x/524d84778295cc39",
-              "urlToImage": "https://c.biztoc.com/p/524d84778295cc39/s.webp",
-              "publishedAt": "2024-02-01T07:20:06Z",
-              "content": "Elon Musk says Tesla will move immediately to hold a shareholder vote on shifting the firm's legal home from the US state of Delaware to Texas.After the ruling, he posted on social media: \"Never inco… [+286 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Bankier.pl"
-              },
-              "author": "Michał Misiura",
-              "title": "Sąd uznał, że wynagrodzenie Muska to przesada. Miliarder został bez premii",
-              "description": "Sędzia ze stanu Delaware unieważnił pakiet wynagrodzeń Elona Muska za pracę na stanowisku dyrektora generalnego Tesli wynoszący 56 miliardów dolarów, stając po stronie akcjonariusza spółki, który zgłosił, że wypłata miliardera była nieuczciwie wysoka.",
-              "url": "https://www.bankier.pl/wiadomosc/Sad-uznal-ze-wynagrodzenie-Muska-to-przesada-Miliarder-zostal-bez-premii-8688475.html",
-              "urlToImage": "https://galeria.bankier.pl/p/8/4/09163179326026-948-568-0-89-2715-1628.jpg",
-              "publishedAt": "2024-02-01T07:19:00Z",
-              "content": "We wtorek 30 stycznia sdzia ze stanu Delaware uniewani pakiet wynagrodze Elona Muska za prac na stanowisku dyrektora generalnego Tesli wynoszcy 56 miliardów dolarów, stajc po stronie akcjonariusza, k… [+2812 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Securityaffairs.com"
-              },
-              "author": "Pierluigi Paganini",
-              "title": "Police seized 50,000 Bitcoin from operator of the now-defunct piracy site movie2k",
-              "description": "German police seized 50,000 Bitcoin from the former operator of the now-defunct piracy website movie2k.to. The police in Saxony, Germany, have seized 50,000 Bitcoin (more than $2.1 billion at the current exchange rate) from the former operator of the now-defu…",
-              "url": "https://securityaffairs.com/158432/cyber-crime/piracy-site-movie2k-bitcoin.html",
-              "urlToImage": "https://securityaffairs.com/wp-content/uploads/2020/09/bitcoin.jpg",
-              "publishedAt": "2024-02-01T07:18:22Z",
-              "content": "Police seized 50,000 Bitcoin from operator of the now-defunct piracy site movie2k\r\n | Crooks stole around $112 million worth of XRP from Ripples co-founder\r\n | CISA adds Apple improper authentication… [+41742 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "MarketWatch"
-              },
-              "author": null,
-              "title": "Tesla to offer discounts on selected variations of Model Y vehicles in China",
-              "description": "By Sherry Qin Tesla will offer discounts on selected variations of its Model Y vehicles in China, only weeks after it slashed prices on a range of models as...",
-              "url": "https://www.marketwatch.com/story/tesla-to-offer-discounts-on-selected-model-y-vehicles-in-china-4ef06d72",
-              "urlToImage": "https://mw3.wsj.net/mw5/content/logos/mw_logo_social.png",
-              "publishedAt": "2024-02-01T07:14:40Z",
-              "content": "Tesla will offer discounts on selected variations of its Model Y vehicles in China, only weeks after it slashed prices on a range of models as it faces heightened competition from local rivals such a… [+971 chars]"
-            },
-            {
-              "source": {
-                "id": "next-big-future",
-                "name": "Next Big Future"
-              },
-              "author": "Brian Wang",
-              "title": "Wrinkled Graphite Using Scotch Tape Production Method",
-              "description": "Nextbigfuture has covered the LK99, PCPOSOS (aka LK99 with Sulfur) and the wrinkled graphite room temperature and room pressure superconductors or possible room temperature and room pressure superconductors. Alex Kaplan reviewed the wrinkled graphite paper. H…",
-              "url": "https://www.nextbigfuture.com/2024/01/wrinkled-graphite-using-scotch-tape-production-method.html",
-              "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2024/01/scotchtapegraphiteroomtempsuperconductor.jpg",
-              "publishedAt": "2024-02-01T07:14:39Z",
-              "content": "Nextbigfuture has covered the LK99, PCPOSOS (aka LK99 with Sulfur) and the wrinkled graphite room temperature and room pressure superconductors or possible room temperature and room pressure supercon… [+2321 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "ft.com",
-              "title": "Tesla shareholders to vote ‘immediately’ on moving incorporation to Texas, says Musk",
-              "description": "Move comes after billionaire chief executive’s record pay package was voided by a Delaware judge #delaware",
-              "url": "https://biztoc.com/x/9472af12a7772475",
-              "urlToImage": "https://c.biztoc.com/p/9472af12a7772475/s.webp",
-              "publishedAt": "2024-02-01T07:14:08Z",
-              "content": "Move comes after billionaire chief executives record pay package was voided by a Delaware judge\r\n#delaware\r\nThis story appeared on ft.com, ."
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "OilPrice.com"
-              },
-              "author": "Charles Kennedy",
-              "title": "Musk Says Tesla Will Hold Shareholder Vote Over Texas Incorporation",
-              "description": "A poll on X, launched by Tesla CEO Elon Musk, suggested that the company should move to be incorporated in Texas, where the company headquarters are. The poll was prompted by a Delaware court decision that voided Musk’s Tesla compensation package of a sizeabl…",
-              "url": "https://oilprice.com/Latest-Energy-News/World-News/Musk-Says-Tesla-Will-Hold-Shareholder-Vote-Over-Texas-Incorporation.html",
-              "urlToImage": "https://d32r1sh890xpii.cloudfront.net/news/718x300/2024-02-01_w1yacrtqsp.jpg",
-              "publishedAt": "2024-02-01T07:13:00Z",
-              "content": "Kazakhstan is facing deepening electricity…\r\nThe total rig count rose…\r\nBy Charles Kennedy - Feb 01, 2024, 1:13 AM CSTA poll on X, launched by Tesla CEO Elon Musk, suggested that the company should m… [+2023 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Corriere.it"
-              },
-              "author": "Andrea Paoletti",
-              "title": "Il Tesla Cybertruck arriverà in Europa? Ecco perché per alcuni sarebbe fuorilegge",
-              "description": "Nonostante Tesla non abbia mai dichiarato esplicitamente di voler esportare il suo pickup, l’interesse è alto anche in Europa, ma potrebbe essere molto difficile omologarlo ed immatricolarlo.",
-              "url": "https://www.corriere.it/motori/news/24_febbraio_01/tesla-cybertruck-arrivera-europa-ecco-perche-alcuni-sarebbe-fuorilegge-e0c8418c-b222-11ee-9299-5cd622bffa26.shtml",
-              "urlToImage": "https://images2.corriereobjects.it/methode_image/2024/01/13/Motori/Foto-Motori-Trattate/759096ec7b7a49d2a2b1730691771fb1-kNvB--526x284@Corriere-Web-Sezioni.jpg",
-              "publishedAt": "2024-02-01T07:13:00Z",
-              "content": "di Andrea Paoletti Nonostante Tesla non abbia mai dichiarato esplicitamente di voler esportare il suo pickup, l’interesse è alto anche in Europa, ma potrebbe essere molto difficile omologarlo ed imma… [+3032 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Mediafax.ro"
-              },
-              "author": "Ştefan Stan",
-              "title": "Acţionarii Tesla vor vota „imediat” pentru mutarea sediului social în Texas",
-              "description": "Tesla va organiza „imediat” un vot al acţionarilor cu privire la mutarea înregistrării corporative a companiei din Delaware în Texas, a scris Elon Musk într-o postare pe platforma sa de socializare X miercuri seară, potrivit Ziarului Financiar.",
-              "url": "https://www.mediafax.ro/economic/actionarii-tesla-vor-vota-imediat-pentru-mutarea-sediului-social-in-texas-22245796",
-              "urlToImage": "https://storage0.dms.mpinteractiv.ro/media/1/1/1686/22245796/1/7885202-ap-mediafax-foto-ap-david-zalubowski.jpg?width=640",
-              "publishedAt": "2024-02-01T07:10:49Z",
-              "content": "Omul de afaceri miliardar a citat un sondaj anterior pe care l-a postat pe X în care întreba: Ar trebui ca Tesla s îi schimbe statul de înregistrare în Texas, unde se afl sediul su fizic?. Rezultatul… [+1346 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "theguardian.com",
-              "title": "Carmakers may be using aluminium made by Uyghur forced labour, NGO investigation finds",
-              "description": "Car manufacturers Toyota, Volkswagen, Tesla, General Motors and BYD may be using aluminium made by Uyghur forced labour in their supply chains and could do more to minimise that risk, Human Rights Watch says. An investigation conducted by HRW has alleged that…",
-              "url": "https://biztoc.com/x/34d303805d15dc5f",
-              "urlToImage": "https://c.biztoc.com/p/34d303805d15dc5f/s.webp",
-              "publishedAt": "2024-02-01T07:10:07Z",
-              "content": "Car manufacturers Toyota, Volkswagen, Tesla, General Motors and BYD may be using aluminium made by Uyghur forced labour in their supply chains and could do more to minimise that risk, Human Rights Wa… [+290 chars]"
-            },
-            {
-              "source": {
-                "id": "the-times-of-india",
-                "name": "The Times of India"
-              },
-              "author": "ET Online",
-              "title": "BudgET 2024: FM launches new schemes for biomanufacturing and biofoundry to promote green growth",
-              "description": "As Elon Musk looks all set to enter the burgeoning Indian electric vehicle (EV) market with his Tesla vehicles this year, the government on Thursday said it will expand and strengthen the EV ecosystem by supporting the manufacturing and charging infrastructur…",
-              "url": "https://economictimes.indiatimes.com/news/india/budget-2024-fm-launches-new-schemes-for-biomanufacturing-and-biofoundry-to-promote-green-growth/videoshow/107318116.cms",
-              "urlToImage": "https://img.etimg.com/thumb/msid-107318116,width-1070,height-580,overlay-economictimes/photo.jpg",
-              "publishedAt": "2024-02-01T07:09:22Z",
-              "content": "As Elon Musk looks all set to enter the burgeoning Indian electric vehicle (EV) market with his Tesla vehicles this year, the government on Thursday said it will expand and strengthen the EV ecosyste… [+366 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Marketscreener.com"
-              },
-              "author": null,
-              "title": "Tesla to Offer Discounts on Selected Model Y Vehicles in China",
-              "description": "(marketscreener.com) \n By Sherry Qin \n\n\n Tesla will offer discounts on selected variations of its Model Y vehicles in China, only weeks after it slashed prices on a range of models as it faces heightened competition from local rivals such as BYD and uncertain…",
-              "url": "https://www.marketscreener.com/quote/stock/TESLA-INC-6344549/news/Tesla-to-Offer-Discounts-on-Selected-Model-Y-Vehicles-in-China-45859522/",
-              "urlToImage": "https://www.marketscreener.com/images/twitter_MS_fdblanc.png",
-              "publishedAt": "2024-02-01T07:08:11Z",
-              "content": "By Sherry Qin \r\nTesla will offer discounts on selected variations of its Model Y vehicles in China, only weeks after it slashed prices on a range of models as it faces heightened competition from loc… [+1039 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "aol.com",
-              "title": "Elon Musk says the people have spoken, and he'll make moves to shift Tesla to be incorporated in Texas",
-              "description": "None Elon Musk is done with the state of Delaware. • None Musk says he's going to call a shareholder vote to transfer Tesla's incorporation to Texas. • None The decision comes after a Delaware judge voided his $55 billion compensation package at Tesla. Tesla …",
-              "url": "https://biztoc.com/x/cb6dc19c13b667d7",
-              "urlToImage": "https://c.biztoc.com/p/cb6dc19c13b667d7/s.webp",
-              "publishedAt": "2024-02-01T07:06:07Z",
-              "content": "None Elon Musk is done with the state of Delaware.None Musk says he's going to call a shareholder vote to transfer Tesla's incorporation to Texas.None The decision comes after a Delaware judge voided… [+250 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "aol.com",
-              "title": "Elon Musk says the people have spoken, and he'll make moves to shift Tesla to be incorporated in Texas",
-              "description": "None Elon Musk is done with the state of Delaware. • None Musk says he's going to call a shareholder vote to transfer Tesla's incorporation to Texas. • None The decision comes after a Delaware judge voided his $55 billion compensation package at Tesla. Tesla …",
-              "url": "https://biztoc.com/x/cb6dc19c13b667d7",
-              "urlToImage": "https://c.biztoc.com/p/cb6dc19c13b667d7/s.webp",
-              "publishedAt": "2024-02-01T07:06:07Z",
-              "content": "None Elon Musk is done with the state of Delaware.None Musk says he's going to call a shareholder vote to transfer Tesla's incorporation to Texas.None The decision comes after a Delaware judge voided… [+250 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "cnbc.com",
-              "title": "Elon Musk says Tesla will hold a shareholder vote to incorporate in Texas after Delaware pay snub",
-              "description": "and Tesla CEO Elon Musk speaks during live interview with Ben Shapiro at the symposium on fighting antisemitism on January 22, 2024 in Krakow, Poland. Elon Musk said late Wednesday that Tesla will hold a shareholder vote on whether to transfer the electric ca…",
-              "url": "https://biztoc.com/x/5382339c799d2b67",
-              "urlToImage": "https://c.biztoc.com/p/5382339c799d2b67/s.webp",
-              "publishedAt": "2024-02-01T07:06:06Z",
-              "content": ", and Tesla CEO Elon Musk speaks during live interview with Ben Shapiro at the symposium on fighting antisemitism on January 22, 2024 in Krakow, Poland.Elon Musk said late Wednesday that Tesla will h… [+288 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Yahoo Entertainment"
-              },
-              "author": null,
-              "title": "Tesla: Elon Musk moves to shift firm's legal home to Texas",
-              "description": null,
-              "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_dfc9c0e5-0c2b-482f-b3a2-449ef3a5c407",
-              "urlToImage": null,
-              "publishedAt": "2024-02-01T07:05:40Z",
-              "content": "Si vous cliquez sur « Tout accepter », nos partenaires (y compris 244 qui font partie du Cadre de transparence et de consentement dIAB) et nous utiliserons également des témoins et vos données person… [+982 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "finance.yahoo.com",
-              "title": "Why Tesla stock has been on a wild, wild ride",
-              "description": "If you’re looking for a screwball company that has a screwball chief executive officer and a screwball stock price, I can tell you just where to go: Tesla, Inc. The screwball CEO, of course, is Elon Musk, who three years ago also crowned himself Tesla’s (TSLA…",
-              "url": "https://biztoc.com/x/d12c1d4ee7b0de88",
-              "urlToImage": "https://c.biztoc.com/p/d12c1d4ee7b0de88/s.webp",
-              "publishedAt": "2024-02-01T07:00:06Z",
-              "content": "If youre looking for a screwball company that has a screwball chief executive officer and a screwball stock price, I can tell you just where to go: Tesla, Inc.The screwball CEO, of course, is Elon Mu… [+302 chars]"
-            },
-            {
-              "source": {
-                "id": "bbc-news",
-                "name": "BBC News"
-              },
-              "author": "https://www.facebook.com/bbcnews",
-              "title": "Tesla: Elon Musk moves to shift Tesla legal home to Texas",
-              "description": "The multi-billionaire says the electric car maker will move immediately to hold a shareholder vote on the matter.",
-              "url": "https://www.bbc.co.uk/news/business-68163184",
-              "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/E859/production/_132518495_gettyimages-1963454334.jpg",
-              "publishedAt": "2024-02-01T07:00:02Z",
-              "content": "Elon Musk says Tesla will move immediately to hold a shareholder vote on shifting the firm's legal home from the US state of Delaware to Texas.\r\nIt comes after a judge in Delaware annulled Mr Musk's … [+1610 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Auto-moto.com"
-              },
-              "author": "Hugo Dupont",
-              "title": "Les voitures électriques en difficulté ? L'exemple de la Norvège",
-              "description": "Paradis des modèles zéro émission, le royaume de Norvège pourrait néanmoins rencontrer quelques difficultés à réaliser son ambitieux objectif qui est, rappelons-le, de faire en sorte que toutes les voitures neuves vendues à partir de l'année prochaine soit 10…",
-              "url": "https://www.auto-moto.com/en-bref/les-voitures-electriques-en-difficulte--l-exemple-de-la-norvege-29571",
-              "urlToImage": "https://photos.auto-moto.com/32/2024/01/photo_article/29571/158648/1200-L-les-voitures-lectriques-en-difficult-l-exemple-de-la-norvge.webp",
-              "publishedAt": "2024-02-01T07:00:00Z",
-              "content": "Un marché où la plupart des voitures neuves vendues sont 100 % électrique et ne rejettent pas le moindre gramme de CO2 à l'usage, une simple utopie pour le moment ? Non, la Norvège constitue en cela … [+4482 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Feber.se"
-              },
-              "author": "Wille Wilhelmsson",
-              "title": "Palworld har nu över 19 miljoner spelare",
-              "description": "Största tredjepartsspelet på Xbox Game Pass någonsin\n\n\n\n\n\n\nSuccén för Pocket Pairs spelet Palworld fortsätter. Spelet, som har kallat för \"Pokémon med vapen\" har nu sålts i över 12 miljoner exemplar i spelbutiken Steam. Samtidigt uppger Microsoft att Palworld…",
-              "url": "https://feber.se/spel/palworld-har-nu-over-19-miljoner-spelare/461838/",
-              "urlToImage": "https://static.feber.se/article_images/58/09/54/580954.jpg",
-              "publishedAt": "2024-02-01T07:00:00Z",
-              "content": "+\r\nLäs artiklar före alla andra\r\nKommentera före alla andra\r\nVälj periodJu längre period, desto bättre pris. Du bestämmer! \r\nMånad\r\n39 kr/mån\r\nKvartal\r\n33 kr/mån\r\nÅr\r\n25 kr/mån\r\nVälj hur du vill beta… [+42677 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Bangkok Post"
-              },
-              "author": "Bloomberg News",
-              "title": "Tesla, VW at risk of ties to Uyghur forced labour in China",
-              "description": "NEW YORK - Five of the world's major carmakers are not sufficiently mapping their supply chains to stamp out links to forced labour programs in China's Xinjiang region, according to a report by Human Rights Watch (HRW).",
-              "url": "https://www.bangkokpost.com/business/motoring/2734655/tesla-vw-at-risk-of-ties-to-uyghur-forced-labour-in-china",
-              "urlToImage": "https://static.bangkokpost.com/media/content/20240201/c1_2734655_700.jpg",
-              "publishedAt": "2024-02-01T07:00:00Z",
-              "content": "NEW YORK - Five of the world's major carmakers are not sufficiently mapping their supply chains to stamp out links to forced labour programs in China's Xinjiang region, according to a report by Human… [+5354 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "CNBC"
-              },
-              "author": "Arjun Kharpal, Lora Kolodny",
-              "title": "Elon Musk says Tesla will hold a shareholder vote to incorporate in Texas after Delaware pay snub",
-              "description": "Musk's X post comes after a judge in Delaware, where Tesla is currently incorporated, voided the $56 billion pay package granted to the billionaire in 2018.",
-              "url": "https://www.cnbc.com/2024/02/01/elon-musk-tesla-will-hold-a-shareholder-vote-to-incorporate-in-texas.html",
-              "urlToImage": "https://image.cnbcfm.com/api/v1/image/107362492-1705943497451-gettyimages-1952768063-omm_0137_glqhhy5f.jpeg?v=1706651704&w=1920&h=1080",
-              "publishedAt": "2024-02-01T06:59:00Z",
-              "content": "Elon Musk said late Wednesday that Tesla will hold a shareholder vote on whether to transfer the electric carmaker's state of incorporation to Texas.\r\nThe billionaire asked his followers via a straw … [+1853 chars]"
-            },
-            {
-              "source": {
-                "id": "next-big-future",
-                "name": "Next Big Future"
-              },
-              "author": "Brian Wang",
-              "title": "Expecting Continued 8-10% Annual Cost Reductions for Tesla $TSLA",
-              "description": "Supply Chain expert, Jeff Lutz, expects Tesla to continue 8-10% annual cost reductions from $36300 for the Model Y at the end of Q4 2023. This could range from 6-12% or more if there are external global issues. If we project 9% annual cost reductions for each…",
-              "url": "https://www.nextbigfuture.com/2024/01/expecting-continued-8-10-annual-cost-reductions-for-tesla-tsla.html",
-              "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2024/01/Screen-Shot-2024-01-31-at-10.15.09-PM.jpg",
-              "publishedAt": "2024-02-01T06:58:48Z",
-              "content": "Supply Chain expert, Jeff Lutz, expects Tesla to continue 8-10% annual cost reductions from $36300 for the Model Y at the end of Q4 2023.\r\nThis could range from 6-12% or more if there are external gl… [+3379 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Biztoc.com"
-              },
-              "author": "coinpedia.org",
-              "title": "or Hedera (HBAR) Can Compete with Pullix (PLX) passive Income",
-              "description": "The post Not Even Aave (AAVE) or Hedera (HBAR) Can Compete with Pullix (PLX) passive Income appeared first on Coinpedia Fintech News The attractive prospects of Pullix have made it one of the best crypto in the market. Even giants like Aave (AAVE) and Hedera …",
-              "url": "https://biztoc.com/x/87d43612c70ba3b9",
-              "urlToImage": "https://c.biztoc.com/p/87d43612c70ba3b9/s.webp",
-              "publishedAt": "2024-02-01T06:52:10Z",
-              "content": "The post Not Even Aave (AAVE) or Hedera (HBAR) Can Compete with Pullix (PLX) passive Income appeared first on Coinpedia Fintech NewsThe attractive prospects of Pullix have made it one of the best cry… [+269 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "Portfolio.hu"
-              },
-              "author": "Portfolio.hu",
-              "title": "A Huawei miatt akadozik a kínai e-autó ipar - a Tesla S kihívója is érintett",
-              "description": "A Huawei gyártási nehézségei miatt a Changan Auto, a Chery Auto és a Seres vállalatok kénytelenek késleltetni elektromos járműveik szállítását.",
-              "url": "https://www.portfolio.hu/uzlet/20240201/a-huawei-miatt-akadozik-a-kinai-e-auto-ipar-a-tesla-s-kihivoja-is-erintett-666521",
-              "urlToImage": "https://pcdn.hu/articles/images-xl/l/u/x/luxeed-s7-654299.jpg",
-              "publishedAt": "2024-02-01T06:50:00Z",
-              "content": "A Huawei által szállított kulcsfontosságú számítástechnikai egységek gyártásával kapcsolatos problémák miatt több kínai autógyártó is késlekedik modelljeinek piacra dobásával - tájékoztatták a Reuter… [+2127 chars]"
-            },
-            {
-              "source": {
-                "id": null,
-                "name": "futurezone.at"
-              },
-              "author": "futurezone.at",
-              "title": "Video: Elon Musk geht mit nacktem Tesla-Roboter spazieren",
-              "description": "Der humanoide Optimus-Roboter zeigt sich im Video von einer noch nie zuvor gesehenen Seite.",
-              "url": "https://futurezone.at/produkte/video-elon-musk-optimus-tesla-humanoider-roboter-spazieren-nackt-atlas-boston-dynamics/402762802",
-              "urlToImage": "https://image.futurezone.at/images/facebook/8494120/46-198365523.jpg",
-              "publishedAt": "2024-02-01T06:47:40Z",
-              "content": "01.02.2024\r\nDer humanoide Optimus-Roboter zeigt sich im Video von einer noch nie zuvor gesehenen Seite."
+              "url": "https://www.ign.com/articles/claim-a-key-for-hellcard-the-turn-based-deckbuilding-rogue-lite-from-book-of-demons-developer",
+              "urlToImage": "https://assets-prd.ignimgs.com/2022/11/24/hellcardthumb-1669299176154.jpg?width=1280",
+              "publishedAt": "2024-02-01T20:00:00Z",
+              "content": "If you dig old-school turn-based fantasy games, I've got some great news for you. Hellcard is going to scratch that itch, and it adds quite a few strategic gameplay elements to the mix as well, keepi… [+10492 chars]"
             },
             {
               "source": {
                 "id": null,
                 "name": "Digital Trends"
               },
-              "author": "Trevor Mogg",
-              "title": "Tesla video shows off Cybertruck’s Basecamp tent attachment",
-              "description": "First unveiled alongside the first Cybertruck deliveries in November, the vehicle's Basecamp tent attachment paves the way for overnight adventures.",
-              "url": "https://www.digitaltrends.com/cars/tesla-video-cybertruck-basecamp-tent/",
-              "urlToImage": "https://www.digitaltrends.com/wp-content/uploads/2024/01/cybertruck-basecamp-tent.jpg?resize=1200%2C630&p=1",
-              "publishedAt": "2024-02-01T06:45:33Z",
-              "content": "Camp with Cybertruck Basecamp\r\nAfter a long wait, Tesla finally delivered the Cybertruck pickup to the first customers at the end of November.\r\nSince then, the Elon Musk-led automaker has been pushin… [+1999 chars]"
+              "author": "Aaron Mamiit",
+              "title": "The 5 best Apple Pencil alternatives in 2024",
+              "description": "For the best Apple Pencil alternatives for your iPad, you should check out our recommendations here that range from budget-friendly tools to premium devices.",
+              "url": "https://www.digitaltrends.com/mobile/best-apple-pencil-alternatives/",
+              "urlToImage": "https://www.digitaltrends.com/wp-content/uploads/2021/06/logitech-crayon-digital-pencil.jpg?resize=1200%2C630&p=1",
+              "publishedAt": "2024-02-01T12:50:52Z",
+              "content": "Adam Doud / Digital Trends\r\nIf you want a tool that will help you take notes or create drawings on your iPad, you should know that there are other options aside from the Apple Pencil, Apple Pencil 2,… [+8235 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Abajournal.com"
+                "name": "Digital Trends"
               },
-              "author": "Jenny B. Davis",
-              "title": "10 Questions: In crafting a new career, this Texas contracts attorney created a community",
-              "description": "",
-              "url": "https://www.abajournal.com/magazine/article/10-questions-in-crafting-a-new-career-this-texas-contracts-attorney-created-a-community",
-              "urlToImage": "https://www.abajournal.com/images/covers/020324_COVER_250px.jpg",
-              "publishedAt": "2024-02-01T06:41:59Z",
-              "content": "<ol><li>Home</li><li>Magazine</li><li>10 Questions: In crafting a new career, this…</li></ol>By Jenny B. Davis\r\nFebruary 1, 2024, 1:10 am CST\r\nIt’s lunchtime in Las Vegas. There’s a DJ spinning beats… [+9216 chars]"
+              "author": "Alan Truly",
+              "title": "The Vision Pro App Store has already tripled in size",
+              "description": "Apple gave an update on the Vision Pro App Store, announcing that many more native apps were available than rumors suggested.",
+              "url": "https://www.digitaltrends.com/computing/the-vision-pro-app-store-has-already-tripled-in-size/",
+              "urlToImage": "https://www.digitaltrends.com/wp-content/uploads/2024/01/Apple-Vision-Pro-Environments-4.jpg?resize=1200%2C630&p=1",
+              "publishedAt": "2024-02-01T18:12:35Z",
+              "content": "The Voyager app on Vision Pro lets you see airports in 3D in real time.Apple\r\nApple just announced a surge in Vision Pro apps, nearly tripling the best estimates from late January. That’s good news f… [+2183 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Feber.se"
+                "name": "Digital Trends"
               },
-              "author": "Bobby Green",
-              "title": "Skoda teasar uppdaterade Octavia",
-              "description": "Har premiär nästa månad\n\n\n\n\n\n\n\n\n\n\nSnart kommer Skoda att dra täcket av uppdaterade Octavia och här får vi oss en första glimt av den. Den har fått en \"modernare\" look vilket bland annat innebär nya strålkastare och ny grill. Det väntas även bli uppdateringar …",
-              "url": "https://feber.se/bil/skoda-teasar-uppdaterade-octavia/461835/",
-              "urlToImage": "https://i.ytimg.com/vi/2jSnl21n6zI/hqdefault.jpg",
-              "publishedAt": "2024-02-01T06:40:00Z",
-              "content": "+\r\nLäs artiklar före alla andra\r\nKommentera före alla andra\r\nVälj periodJu längre period, desto bättre pris. Du bestämmer! \r\nMånad\r\n39 kr/mån\r\nKvartal\r\n33 kr/mån\r\nÅr\r\n25 kr/mån\r\nVälj hur du vill beta… [+42282 chars]"
+              "author": "Bryan M. Wolfe",
+              "title": "I’m a lifelong iPhone user. Here’s what I think about the Samsung Galaxy S24",
+              "description": "I'm a lifelong iPhone user and prefer Apple smartphones over other options. But I have a lot of thoughts on Samsung's Galaxy S24 series.",
+              "url": "https://www.digitaltrends.com/mobile/im-an-iphone-user-what-i-think-about-samsung-galaxy-s24/",
+              "urlToImage": "https://www.digitaltrends.com/wp-content/uploads/2024/01/galaxy-s24-ultra-screen-spen-leaves.jpg?resize=1200%2C630&p=1",
+              "publishedAt": "2024-02-01T13:00:05Z",
+              "content": "Andy Boxall / Digital Trends\r\nSamsung and Apple typically release new smartphones at different times of the year. Samsung usually does it early in the year, while Apple waits until the fall ahead of … [+6760 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Madshrimps.be"
+                "name": "Digital Trends"
               },
-              "author": "Stefan Mileschin",
-              "title": "Elon Musk's $56 billion Tesla pay package has been tossed out by the court",
-              "description": "In 2018, Tesla awarded Elon Musk a $56 billion pay package that helped propel him to the top of world's richest lists. Now, a judge in Delaware has rendered the deal between the company and the CEO to be invalid and called the compensation an \"unfathomable su…",
-              "url": "http://www.madshrimps.be/news/item/226991",
+              "author": "Derek Malcolm",
+              "title": "Cambridge Audio hopes for another hit with its new CXN100 network streamer",
+              "description": "British audio device maker Cambridge Audio has unveiled its new flagship network music streamer, the redesigned CXN100.",
+              "url": "https://www.digitaltrends.com/home-theater/cambridge-audio-launches-cxn100-network-streamer/",
+              "urlToImage": "https://www.digitaltrends.com/wp-content/uploads/2024/01/cambridge-audio-cxn100-network-streamer-01.jpeg?resize=1200%2C630&p=1",
+              "publishedAt": "2024-02-01T14:00:49Z",
+              "content": "Cambridge Audio\r\nFans of Cambridge Audio’s award-winning network music players are about to get a treat, as the British audio maker today launched its CXN100 Network Player, the long-awaited successo… [+3552 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Honest-broker.com"
+              },
+              "author": "Ted Gioia",
+              "title": "Nine Ugly Truths about Copyright and five predictions about its future",
+              "description": "...and five predictions about its future",
+              "url": "https://www.honest-broker.com/p/nine-ugly-truths-about-copyright",
+              "urlToImage": "https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0ad2b685-2256-44af-afda-30788feef38b_1400x982.png",
+              "publishedAt": "2024-02-01T17:18:17Z",
+              "content": "They say nobody has a crystal ballbut thats not true. I bought one at a flea market years ago.\r\nIts a little dull and scratched nowadays, much like its owner, but I still peer into it. And even with … [+4237 chars]"
+            },
+            {
+              "source": {
+                "id": "hacker-news",
+                "name": "Hacker News"
+              },
+              "author": null,
+              "title": "Launch HN: Escape (YC W23) – Discover and secure all your APIs",
+              "description": "Comments",
+              "url": "https://news.ycombinator.com/item?id=39215779",
               "urlToImage": null,
-              "publishedAt": "2024-02-01T06:38:23Z",
-              "content": "Copyright © 2001-2011 Madshrimps, All rights reserved.Graphic Design by Dennis Kestelle, Programming by Maarten Menten,\r\nOverall Site design by John Meys\r\nAll information and graphics contained in Ma… [+135 chars]"
+              "publishedAt": "2024-02-01T13:38:42Z",
+              "content": "Hey HN! Were Tristan and Antoine, co-founders of Escape (https://escape.tech). We use AI inspired by chess to help security engineers and developers discover and secure APIs created by their organiza… [+8710 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Gigazine.net"
+              },
+              "author": "@GIGAZINE",
+              "title": "Apple Vision ProとMeta Quest 3を比較した貴重な本音レビューが明らかに、Apple Vision Proは買いなのか？",
+              "description": "2024年2月2日(金)にアメリカで発売されるApple初のヘッドセット型空間コンピューティングデバイス「Apple Vision Pro」について、実際に先行で数日間使ったという人がオンライン掲示板サイト・Redditに、Apple Vision Proのおよそ7分の1の価格で入手できるスタンドアローン型MRヘッドセット「Meta Quest 3」と比較したレビューを投稿しています。続きを読む...",
+              "url": "https://gigazine.net/news/20240201-apple-vision-pro-meta-quest-3/",
+              "urlToImage": "https://i.gzn.jp/img/2024/02/01/apple-vision-pro-meta-quest-3/00_m.jpg",
+              "publishedAt": "2024-02-01T10:00:00Z",
+              "content": "202422()AppleApple Vision ProRedditApple Vision Pro71MRMeta Quest 3\r\n[Long post]Tried Vision Pro. Here's what I thought : OculusQuesthttps://old.reddit.com/r/OculusQuest/comments/1aetqks/long_posttri… [+873 chars]"
             },
             {
               "source": {
                 "id": null,
                 "name": "heise online"
               },
-              "author": "Oliver Bünte",
-              "title": "Tesla Optimus Bot läuft noch menschenähnlicher",
-              "description": "Teslas Optimus Bot hat ein Update erhalten. Der humanoide Roboter läuft nun sturzfreier und menschenähnlicher.",
-              "url": "https://www.heise.de/news/Tesla-Optimus-Bot-laeuft-noch-menschenaehnlicher-9615034.html",
-              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/5/2/7/1/Optimus_Fu__sse-d05f461a31ffda30.jpg",
-              "publishedAt": "2024-02-01T06:38:00Z",
-              "content": "Teslas humanoider Roboter Optimus Bot hat ein Update im Bereich der Fortbewegung erhalten. Die damit erweiterte zweite Generation des Roboters kann nun etwas schneller, sturzfreier und menschenähnlic… [+2488 chars]"
+              "author": "Johannes Schuster, Sebastian Trepesch",
+              "title": "Pro & Contra: Vernachlässigt Apple das iPad?",
+              "description": "Neue iPads wurden zuletzt im Oktober 2022 vorgestellt. Verliert Apple seine Tablets aus dem Auge?",
+              "url": "https://www.heise.de/meinung/Pro-Contra-Vernachlaessigt-Apple-das-iPad-9608651.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/1/9/0/5/Pro_Contra_Vorlage_2000x1125-2-a2b65e91b9ec6208.jpg",
+              "publishedAt": "2024-02-01T09:45:00Z",
+              "content": "Im ganzen Jahr 2023 gab es keine einzige iPad-Neuvorstellung. Die jüngsten Modelle stellte Apple im Oktober 2022 vor. Das letzte iPad Air stammt vom März 2022, das iPad mini gar vom September 2021. D… [+3515 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Zacjohnson.com"
+                "name": "heise online"
               },
-              "author": "Disclaimer and DMCA",
-              "title": "Who Owns Uber? – Uber Company History",
-              "description": "Curious about who owns Uber? In this article, we will dive into the history and ownership of Uber, the popular ride-hailing and delivery service. From its humble beginnings to its global expansion, we will explore the key figures behind the company and its cu…",
-              "url": "https://zacjohnson.com/who-owns-uber/",
-              "urlToImage": "https://0043d976.rocketcdn.me/wp-content/uploads/2024/02/who-owns-uber.jpg",
-              "publishedAt": "2024-02-01T06:30:01Z",
-              "content": "Curious about who owns Uber? In this article, we will dive into the history and ownership of Uber, the popular ride-hailing and delivery service. From its humble beginnings to its global expansion, w… [+27990 chars]"
+              "author": "Malte Kirchner",
+              "title": "homeOS: Apple-TV-Firmware enthält Hinweise auf neues Betriebssystem",
+              "description": "Apple hat in der ersten Beta von tvOS 17.4 Hinweise auf ein neues Betriebssystem namens homeOS versteckt. Was es damit auf sich hat.",
+              "url": "https://www.heise.de/news/homeOS-Apple-TV-Firmware-enthaelt-Hinweise-auf-neues-Betriebssystem-9615513.html",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/5/5/2/5/homepod2-3a0f6816c3948ae5.jpg",
+              "publishedAt": "2024-02-01T11:50:00Z",
+              "content": "Es gibt neue Anzeichen, dass Apple an einem Betriebssystem für Smart-Home-Geräte namens homeOS arbeitet. Nennungen des Begriffs in Dateien der ersten Betaversion von tvOS 17.4 deuten darauf hin, dass… [+2325 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Numerama"
+                "name": "heise online"
               },
-              "author": "Bob Jouy",
-              "title": "Hausse de l’électricité : rouler en voiture électrique est-il encore rentable ?",
-              "description": "Les tarifs de l'électricité augmentent au 1er février 2024. Beaucoup d'indécis se demandent alors si le gain financier du passage à l'électrique est toujours là. Que coûte une voiture électrique face à une thermique, en tenant compte de cette hausse ?",
-              "url": "https://www.numerama.com/vroom/1616726-hausse-de-lelectricite-rouler-en-voiture-electrique-est-il-encore-rentable.html",
-              "urlToImage": "https://www.numerama.com/wp-content/uploads/2024/02/voiture-electrique-charge-3.jpg",
-              "publishedAt": "2024-02-01T06:25:00Z",
-              "content": "Les tarifs de l’électricité augmentent au 1er février 2024. Beaucoup d’indécis se demandent alors si le gain financier du passage à l’électrique est toujours là. Que coûte une voiture électrique face… [+10051 chars]"
+              "author": "Leo Becker",
+              "title": "Was sich in Europa für iPhone-Nutzer jetzt ändert | Mac & i-Podcast",
+              "description": "App-Läden, Browser-Auswahl, offenes NFC und mehr: Apple muss das iPhone in der EU grundlegend öffnen. Was das für Nutzer und Entwickler konkret bedeutet.",
+              "url": "https://www.heise.de/news/Was-sich-in-Europa-fuer-iPhone-Nutzer-jetzt-aendert-Mac-i-Podcast-9615543.html",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/5/5/4/0/euiphone169-7aa8a6897cc4cb78.jpg",
+              "publishedAt": "2024-02-01T11:56:00Z",
+              "content": "Seit über einem Jahr hat sich Apple still auf das Gesetz über digitale Märkte in Europa vorbereitet jetzt ist die Katze aus dem Sack: iOS 17.4 öffnet das Betriebssystem erstmals für alternative App-M… [+1621 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Zacjohnson.com"
+                "name": "heise online"
               },
-              "author": "Disclaimer and DMCA",
-              "title": "Who Owns Twitter? – Twitter Company History",
-              "description": "Twitter, currently known as X, is a popular social media website based in the United States. If you’ve ever wondered about the ownership of Twitter, the journey has been quite interesting. Let’s delve into the history of this platform and uncover the details …",
-              "url": "https://zacjohnson.com/who-owns-twitter/",
-              "urlToImage": "https://0043d976.rocketcdn.me/wp-content/uploads/2024/02/who-owns-twitter.jpg",
-              "publishedAt": "2024-02-01T06:20:04Z",
-              "content": "Twitter, currently known as X, is a popular social media website based in the United States. If you’ve ever wondered about the ownership of Twitter, the journey has been quite interesting. Let’s delv… [+24854 chars]"
+              "author": "Wilhelm Drehling",
+              "title": "heise+ | Nullchiffre: Wie man Botschaften verschleiert",
+              "description": "Die Nullchiffre setzt auf das Können und die Kreativität des Verfassers. Das Ergebnis sind normal aussehende Texte, in denen eine Botschaft versteckt ist.",
+              "url": "https://www.heise.de/hintergrund/Nullchiffre-Wie-man-Botschaften-verschleiert-9604838.html?wt_mc=rss.red.ho.ho.atom.beitrag_plus.beitrag_plus",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/2/9/8/9/5/shutterstock_190449881-f6cf5cc513acbf11.jpg",
+              "publishedAt": "2024-02-01T16:00:00Z",
+              "content": "Inhaltsverzeichnis\r\nMehr zum Thema Verschlüsselung\r\nSie starrt auf den Boden \"Nein, Otis! Wieso?!\" Traurig blickt Tanja hinab auf ihren Kater, der gierig eine Elster durch das Fenster anschaut. Neben… [+4314 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Feber.se"
+                "name": "heise online"
               },
-              "author": "Wille Wilhelmsson",
-              "title": "Handelshögskolan skärper intagningskrav",
-              "description": "För att motverka betygsinflation\n\n\n\n\n\n\nHandelshögskolan i Stockholm har nu beslutat att skärpa sina intagningskrav på studenter som söker till skolan, något som innebär att de som söker till högskolan nu måste ha fått minst 1,25 poäng på högskoleprovet, oavse…",
-              "url": "https://feber.se/samhalle/handelshogskolan-skarper-intagningskrav/461832/",
-              "urlToImage": "https://static.feber.se/article_images/58/09/53/580953.jpeg",
-              "publishedAt": "2024-02-01T06:20:00Z",
-              "content": "+\r\nLäs artiklar före alla andra\r\nKommentera före alla andra\r\nVälj periodJu längre period, desto bättre pris. Du bestämmer! \r\nMånad\r\n39 kr/mån\r\nKvartal\r\n33 kr/mån\r\nÅr\r\n25 kr/mån\r\nVälj hur du vill beta… [+42116 chars]"
+              "author": "Holger Zelder",
+              "title": "heise-Angebot: Mac & i 1/24: iPhone individualisieren, Zeitmanagement, 40 Jahre Mac",
+              "description": "iPhone individuell • Effizientes Zeitmanagement • 40 Jahre Macintosh • Loslegen mit Kurzbefehlen • AirPods-Akkutausch",
+              "url": "https://www.heise.de/news/Mac-i-1-24-iPhone-individualisieren-Zeitmanagement-40-Jahre-Mac-9614987.html",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/5/2/4/7/Titelbild_Heftanku__ndigung_Mac__amp__i_2024-01_A-dd90c5dee13d585f.jpg",
+              "publishedAt": "2024-02-01T11:55:00Z",
+              "content": "Inhaltsverzeichnis\r\nAb dem 2. Februar gibt es die Mac &amp; i 1/2024 im gut sortierten Zeitschriftenhandel. Das Heft können Sie zudem im heise Shop bestellen gedruckt (bis einschließlich zum 9. Febru… [+3103 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Biztoc.com"
+                "name": "heise online"
               },
-              "author": "nytimes.com",
-              "title": "Elon Musk’s $50 Billion Tesla Pay Was Struck Down. What Happens Next?",
-              "description": "A Delaware judge’s decision to void the pay package that helped make Elon Musk the world’s richest person leaves Tesla’s board of directors with some difficult decisions to make. Chancellor Kathaleen St. J. McCormick of the Delaware Court of Chancery on Tuesd…",
-              "url": "https://biztoc.com/x/ad7067238d242527",
-              "urlToImage": "https://c.biztoc.com/p/ad7067238d242527/s.webp",
-              "publishedAt": "2024-02-01T06:14:06Z",
-              "content": "A Delaware judges decision to void the pay package that helped make Elon Musk the worlds richest person leaves Teslas board of directors with some difficult decisions to make.Chancellor Kathaleen St.… [+236 chars]"
+              "author": "Andrijan Möcker",
+              "title": "heise+ | So können Sie mit Node-Red einfach Smart-Home-Geräte von Tuya ohne Cloud steuern",
+              "description": "Die Tuya-Firmware bringt leider einige Datenschutzrisiken mit sich und kann kaum ausgetausch werden, Tuyas eigene Schnittstelle entschärft jedoch das Problem.",
+              "url": "https://www.heise.de/ratgeber/So-koennen-Sie-mit-Node-Red-einfach-Smart-Home-Geraete-von-Tuya-ohne-Cloud-steuern-9602715.html?wt_mc=rss.red.ho.ho.atom.beitrag_plus.beitrag_plus",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/2/8/7/9/1/ct0424Tuyalokal_RUDOLF_A_BLAHA_128143-amo-online-821315fec565ed97.jpg",
+              "publishedAt": "2024-02-01T10:00:00Z",
+              "content": "Inhaltsverzeichnis\r\nKaffeemaschinen, Schaltsteckdosen, Leuchtmittel, Heizlüfter, Luftbefeuchter, Klimaanlagen, Wärmepumpen, beheizte Toilettenbrillen und viele weitere Geräte: Der chinesische Smart-H… [+4382 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Politiken.dk"
+                "name": "heise online"
               },
-              "author": null,
-              "title": "Musk vil flytte Teslas hjemstat efter nederlag om lønspørgsmål",
-              "description": "Elon Musk vil flytte Teslas tekniske hjemstat efter retligt nederlag om sit lønspørgsmål.",
-              "url": "https://politiken.dk/viden/tech/art9742788/Musk-vil-flytte-Teslas-hjemstat-efter-nederlag-om-l%C3%B8nsp%C3%B8rgsm%C3%A5l",
-              "urlToImage": "https://politiken.dk/incoming/img9742798.4z3y6f/ALTERNATES/p16x9_960/FILE%20PHOTO%20Tesla%20CEO%20Musk%20attends%20a%20conference%20organized%20by%20the%20European%20Jewish%20Association%20in%20Krakow",
-              "publishedAt": "2024-02-01T06:11:57Z",
-              "content": "Teslas aktionærer får lov til at stemme om, hvorvidt elbilselskabet fremover skal registreres i den amerikanske delstat Texas i stedet for Delaware.\r\nDet oplyser selskabets administrerende direktør o… [+1789 chars]"
+              "author": "Marvin Strathmann",
+              "title": "heise+ | Copilot in Office: KI-Helfer in Excel, Word, Powerpoint und Outlook ausprobiert",
+              "description": "Microsofts KI-Assistent Copilot ist nun für mehr Office-365-Abonnenten verfügbar. Wir haben Copilot in Excel, Word, Powerpoint und Outlook ausprobiert.",
+              "url": "https://www.heise.de/tests/Copilot-in-Office-KI-Helfer-in-Excel-Word-Powerpoint-und-Outlook-ausprobiert-9612021.html?wt_mc=rss.red.ho.ho.atom.beitrag_plus.beitrag_plus",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/3/6/6/7/aufmacher-689a8cf98f4b6a4c.jpg",
+              "publishedAt": "2024-02-01T06:30:00Z",
+              "content": "Inhaltsverzeichnis\r\nBüroarbeit besteht oft aus langweiliger und sich wiederholender Arbeit: Man muss Präsentationen erstellen, Excel-Tabellen analysieren oder professionelle Mails verfassen. Microsof… [+4613 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Politiken.dk"
+                "name": "heise online"
               },
-              "author": null,
-              "title": "Musk sender Teslas hjemstat til afstemning efter lønnederlag",
-              "description": "Elon Musk vil flytte Teslas tekniske hjemstat efter retligt nederlag om sit lønspørgsmål.",
-              "url": "https://politiken.dk/viden/tech/art9742788/Musk-sender-Teslas-hjemstat-til-afstemning-efter-l%C3%B8nnederlag",
-              "urlToImage": "https://politiken.dk/incoming/img9742798.4z3y6f/ALTERNATES/p16x9_960/FILE%20PHOTO%20Tesla%20CEO%20Musk%20attends%20a%20conference%20organized%20by%20the%20European%20Jewish%20Association%20in%20Krakow",
-              "publishedAt": "2024-02-01T06:11:57Z",
-              "content": "Teslas aktionærer får lov til at stemme om, hvorvidt elbilselskabet fremover skal registreres i den amerikanske delstat Texas i stedet for Delaware.\r\nDet oplyser selskabets administrerende direktør o… [+1789 chars]"
-            },
-            {
-              "source": {
-                "id": "il-sole-24-ore",
-                "name": "Il Sole 24 Ore"
-              },
-              "author": null,
-              "title": "Ecobonus e produzione, Stellantis oggi al tavolo di Urso: il governo cerca il secondo costruttore di auto",
-              "description": "Al centro dell’incontro ci sono gli attesi nuovi eco-incentivi che difficilmente però entreranno in vigore prima di marzo",
-              "url": "https://www.ilsole24ore.com/art/ecobonus-e-produzione-stellantis-oggi-tavolo-urso-governo-cerca-secondo-costruttore-auto-AFtZeJYC",
-              "urlToImage": "https://i2.res.24o.it/images2010/2024/01/AFtZeJYC/images/e06633d4-c06e-11ee-b38a-fc683781244a-fotohome0.jpg",
-              "publishedAt": "2024-02-01T06:09:44Z",
-              "content": "Ascolta la versione audio dell'articolo\r\n2' di lettura\r\nArriva oggi al tavolo automotive il nuovo piano di incentivi. Il ministro Adolfo Urso presenterà il decreto del presidente del consiglio dei mi… [+2321 chars]"
+              "author": "Jacek Galowicz",
+              "title": "heise+ | Paketmanager Nix ausprobiert, Teil 3: Bedarfsgerecht paketieren",
+              "description": "Nix verpackt Programme für andere Nix-Nutzer sowie in Binaries und Docker-Container. Wir zeigen, wie Sie durch binäre Caches die Arbeit mit Nix beschleunigen.",
+              "url": "https://www.heise.de/ratgeber/Paketmanager-Nix-ausprobiert-Teil-3-Bedarfsgerecht-paketieren-9611393.html?wt_mc=rss.red.ho.ho.atom.beitrag_plus.beitrag_plus",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/3/3/3/5/ct0424nix_paket_128124_syt_uwei_online-ec0421b40cb3c818.jpg",
+              "publishedAt": "2024-02-01T14:00:00Z",
+              "content": "Inhaltsverzeichnis\r\nDie ersten beiden Artikel zum Paketbau mit Nix mündeten in einer \"Flake\"-Datei, die ein kleines C++- und ein Rust-Beispielprogrämmchen verwaltet. Nix-Nutzer können die Programme d… [+4382 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Hibridosyelectricos.com"
+                "name": "heise online"
               },
-              "author": "Alejandro González",
-              "title": "Volkswagen ya tiene la fórmula para esquivar la quiebra de sus eléctricos, y la clave del éxito está donde siempre",
-              "description": "Si hacer que un coche funcione a nivel comercial ya es una tarea complicada para cualquier fabricante, más aún es que un coche eléctrico goce de un protagonismo significativo en el ámbito de las ventas en Europa, que, además, también es un mercado complicado …",
-              "url": "https://www.hibridosyelectricos.com/coches/volkswagen-ya-tiene-formula-esquivar-quiebra-sus-electricos-clave-exito-esta-donde-siempre_72774_102.html",
-              "urlToImage": "https://www.hibridosyelectricos.com/uploads/s1/61/74/05/el-coche-de-siempre-sera-el-que-salve-los-muebles-dentro-de-volkswagen_17_2000x1126.jpeg",
-              "publishedAt": "2024-02-01T06:06:54Z",
-              "content": "Si hacer que un coche funcione a nivel comercial ya es una tarea complicada para cualquier fabricante, más aún es que un coche eléctrico goce de un protagonismo significativo en el ámbito de las vent… [+3965 chars]"
+              "author": "Daniel Herbig",
+              "title": "Outdoor-Smartphones: Bullitt Group macht dicht",
+              "description": "Die britische Bullitt Group baute widerstandsfähige Handys für CAT und Motorola. Nun musste die Firma offenbar schließen.",
+              "url": "https://www.heise.de/news/Outdoor-Smartphones-Bullitt-Group-macht-dicht-9615128.html",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/5/3/2/2/Cat_S75_-_Dust_Proof-ff18c3d44cbf408e.jpg",
+              "publishedAt": "2024-02-01T08:49:00Z",
+              "content": "Die britische Firma Bullitt Group schließt offenbar. Das berichtet das Branchenmagazin Mobile World Live auf Basis von mehreren LinkedIn-Einträgen früherer Angestellter. Demnach hat der Hersteller vo… [+1776 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Forbes"
+                "name": "heise online"
               },
-              "author": "Siladitya Ray, Forbes Staff, \n Siladitya Ray, Forbes Staff\n https://www.forbes.com/sites/siladityaray/",
-              "title": "Musk Says Tesla Will Hold Shareholder Vote ‘Immediately’ To Move Company’s Incorporation To Texas",
-              "description": "The billionaire justified the decision on the results of an unscientific poll run on his X account a day earlier.",
-              "url": "https://www.forbes.com/sites/siladityaray/2024/02/01/musk-says-tesla-will-hold-shareholder-vote-immediately-to-move-companys-incorporation-to-texas/",
-              "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/65bb345b26b5ec22d1c5abfb/0x0.jpg?format=jpg&crop=3917,2204,x0,y111,safe&height=900&width=1600&fit=bounds",
-              "publishedAt": "2024-02-01T06:05:41Z",
-              "content": "Tesla CEO Elon Musk on Thursday said the electric vehicle maker will hold a shareholder vote soon to transfer the companys state of incorporation to Texas, after publicly lashing out at Delawarewhere… [+749 chars]"
+              "author": "Kristina Beer",
+              "title": "Mark Zuckerberg entschuldigt sich bei geschädigten Familien",
+              "description": "Die Chefs großer Social-Media-Firmen wurden vor den US-Kongress geladen. Zuckerberg entschuldigte sich bei anwesenden Familien für Schäden durch seine Apps.",
+              "url": "https://www.heise.de/news/Mark-Zuckerberg-entschuldigt-sich-bei-geschaedigten-Familien-9615020.html",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/5/2/6/4/shutterstock_627623021-0594da79141213eb.jpg",
+              "publishedAt": "2024-02-01T06:24:00Z",
+              "content": "Facebook-Gründer Mark Zuckerberg entschuldigte sich in einer Anhörung im US-Senat bei Familien, deren Kinder durch die Nutzung von Online-Plattformen seines Konzerns zu Schaden gekommen sind. Zuckerb… [+2841 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Marketscreener.com"
+                "name": "heise online"
               },
-              "author": null,
-              "title": "Asia weathers Fed fallout, bonds still banking on rate cuts",
-              "description": "(marketscreener.com) Asian shares steadied on\nThursday as Chinese stocks eked out rare gains, while investors\nstuck to bets for sizable cuts in U.S. interest rates this year\neven if the kick off might now be a little later than first\nhoped.\n The Federal Reser…",
-              "url": "https://www.marketscreener.com/quote/currency/AUSTRALIAN-DOLLAR-US-DOLL-2373531/news/Asia-weathers-Fed-fallout-bonds-still-banking-on-rate-cuts-45858998/",
-              "urlToImage": "https://www.marketscreener.com/images/reuters/2016-01-26T234256Z_1006950001_LYNXNPEC0P1GI_RTROPTP_2_CBUSINESS-US-GLOBAL-FOREX.JPG",
-              "publishedAt": "2024-02-01T06:01:52Z",
-              "content": "* Asian stock markets : https://tmsnrt.rs/2zpUAr4\r\n* China shares steady, S&amp;P futures bounce\r\n* Markets shift Fed rate cut timing from March to May\r\n* Fed futures still see sizable easing over 20… [+3948 chars]"
+              "author": "Dirk Knop",
+              "title": "\"Ändere Dein Passwort\"-Tag: Besser Passkeys oder Passwort-Manager nutzen",
+              "description": "Alle Jahre wieder am 1. Februar sorgt der \"Ändere Dein Passwort\"-Tag für Grummeln in der Redaktion.  Wir empfehlen: Besser alte Gewohnheiten ändern!",
+              "url": "https://www.heise.de/hintergrund/Aendere-Dein-Passwort-Tag-Besser-Passkeys-oder-Passwort-Manager-nutzen-9614565.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+              "urlToImage": "https://heise.cloudimg.io/bound/1200x1200/q85.png-lossy-85.webp-lossy-85.foil1/_www-heise-de_/imgs/18/4/5/3/5/0/2/5/shutterstock_1434313295-a5ba574df94aa2c5.jpg",
+              "publishedAt": "2024-02-01T05:48:00Z",
+              "content": "Am ersten Februar eines jeden Jahres findet er statt, der \"Ändere Dein Passwort\"-Tag. Der ist gut gemeint, aber schon namentlich nicht gut gemacht. Ein anlassloser Passwortwechsel bringt nichts außer… [+3529 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Notebookcheck.net"
+                "name": "9to5Mac"
               },
-              "author": "Nitisha Upadhye",
-              "title": "Tesla tweaks Model Y hardware to push sales in China",
-              "description": "To encourage sales in China, Tesla has upgraded Model Y’s hardware, which will add significant tweaks to the car. The brand is anticipating slow growth in the EV market across the globe, so this move will likely push sales.",
-              "url": "https://www.notebookcheck.net/Tesla-tweaks-Model-Y-hardware-to-push-sales-in-China.798965.0.html",
-              "urlToImage": "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc4/Tesla-model-Y.jpg",
-              "publishedAt": "2024-02-01T06:01:00Z",
-              "content": "Tesla China has recently revealed details about the upgrades made to the Model Y on its official Weibo handle. The EV manufacturer has shared information on the Hardware 4.0 update, which will introd… [+1085 chars]"
+              "author": "Chance Miller",
+              "title": "Tim Cook says Apple is focused on appealing the Apple Watch ban, not settling with Masimo",
+              "description": "Apple’s patent battle with Masimo is far from over. As it stands right now, Apple is still selling the Apple Watch Series 9 and Ultra 2 in the United States, but with the contested blood oxygen feature disabled. \n\n\n\nIn a new interview today, Apple CEO Tim Coo…",
+              "url": "https://9to5mac.com/2024/02/01/tim-cook-masimo-apple-watch-settlement/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2023/12/ECG-Apple-Watch.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T23:38:20Z",
+              "content": "Apple’s patent battle with Masimo is far from over. As it stands right now, Apple is still selling the Apple Watch Series 9 and Ultra 2 in the United States, but with the contested blood oxygen featu… [+1332 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Insurance Journal"
+                "name": "9to5Mac"
               },
-              "author": "admin",
-              "title": "Report Shows California’s 2023 Auto Registrations Highest Since 2020, with an 11.9% Increase in New Vehicles",
-              "description": "Last year proved to be a banner year for new car registrations in California, reaching the highest numbers since the COVID-19 pandemic, a new report out this week shows. The California New Car Dealers Association’s fourth quarter 2023 California Auto …",
-              "url": "https://www.insurancejournal.com/news/west/2024/02/01/758533.htm",
-              "urlToImage": "https://www.insurancejournal.com/app/uploads/2022/02/rows-of-new-volkswagens-before-shipping-bloomberg-scaled.jpg",
-              "publishedAt": "2024-02-01T06:00:44Z",
-              "content": "Last year proved to be a banner year for new car registrations in California, reaching the highest numbers since the COVID-19 pandemic, a new report out this week shows.\r\nThe California New Car Deale… [+3012 chars]"
+              "author": "Zac Hall",
+              "title": "The Vision Pro countdown clock has officially started on Apple․com",
+              "description": "Not hyped enough about Apple Vision Pro yet? Apple has cranked up the anticipation with a countdown clock on apple․com that tells you how soon Apple Vision Pro will officially launch.\n\n\n\n more…",
+              "url": "https://9to5mac.com/2024/01/31/vision-pro-countdown-clock/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/01/countdown-vision-pro.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T04:22:03Z",
+              "content": "Not hyped enough about Apple Vision Pro yet? Apple has cranked up the anticipation with a countdown clock on applecom that tells you how soon Apple Vision Pro will officially launch.\r\nThe Clock of Sp… [+1322 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Auto-swiat.pl"
+                "name": "9to5Mac"
               },
-              "author": "Tomasz Kamiński",
-              "title": "Widziałem na żywo Teslę Cybertruck. Mam mieszane uczucia",
-              "description": "Los Angeles to najludniejsze miasto stanu Kalifornia. Znane przede wszystkim z Hollywood, studiów filmowych, a także sławnych dzielnic typu Beverly Hills, Malibu, czy Bel Air. Jadąc jedną z takich dzielnic, spotkałem samochód, który budzi ogromne zainteresowa…",
-              "url": "https://www.auto-swiat.pl/wiadomosci/aktualnosci/nagle-na-ulicy-zobaczylem-tesle-cybertruck-mam-mieszane-uczucia/rt93pql",
-              "urlToImage": "https://ocdn.eu/pulscms-transforms/1/9J3ktkpTURBXy9iZmFjZGM1MmFlZGQ1ZTZhYjUxMzE3YjQxZTMwZTA2MC5qcGeSlQMAzQEVzQfQzQRlkwXNBLDNAnY",
-              "publishedAt": "2024-02-01T06:00:00Z",
-              "content": "Potne amerykaskie pikapy, luksusowe i sportowe modele, a take bogato wyposaone europejskie terenówki. Wszystko to mona spotka na ulicach Los Angeles czy pooonego niedaleko Newport Beach. Tutaj pikap … [+3213 chars]"
+              "author": "Michael Potuck",
+              "title": "Apple Arcade Guide: Here’s everything available [New: BEAST]",
+              "description": "Apple Arcade launched with close to 100 titles and the service is seeing new games added almost every week with over 200 games now in the library. Follow along with our guide on all the available Apple Arcade games plus the latest releases.\n\n\n\n more…",
+              "url": "https://9to5mac.com/2024/02/01/apple-arcade-games/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2023/05/apple-arcade-announces-20-new-games.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T18:00:00Z",
+              "content": "Apple Arcade launched with close to 100 titles and the service is seeing new games added almost every week with over 200 games now in the library. Follow along with our guide on all the available App… [+107352 chars]"
             },
             {
               "source": {
                 "id": null,
-                "name": "Feber.se"
+                "name": "9to5Mac"
               },
-              "author": "Wille Wilhelmsson",
-              "title": "Starlink har nu 2,3 miljoner kunder",
-              "description": "I över 70 länder\n\n\n\n\n\n\nSpaceX:s rymdinternetoperatör Starlink uppgav under eventet SPIE Photonics West att man nu har 2,3 miljoner kunder i över 70 länder. Eventet var primärt inriktat på laserteknik och Starlink uppgav att man med hjälp av laser transportera…",
-              "url": "https://feber.se/internet/starlink-har-nu-23-miljoner-kunder-/461827/",
-              "urlToImage": "https://static.feber.se/article_images/58/09/49/580949.jpg",
-              "publishedAt": "2024-02-01T06:00:00Z",
-              "content": "+\r\nLäs artiklar före alla andra\r\nKommentera före alla andra\r\nVälj periodJu längre period, desto bättre pris. Du bestämmer! \r\nMånad\r\n39 kr/mån\r\nKvartal\r\n33 kr/mån\r\nÅr\r\n25 kr/mån\r\nVälj hur du vill beta… [+44066 chars]"
+              "author": "Filipe Espósito",
+              "title": "Apple to let developers request consultation on EU changes coming to the App Store",
+              "description": "Apple recently announced a series of measures to comply with the European Union’s Digital Markets Act (DMA) antitrust legislation, which includes allowing alternative app stores on the iPhone. To make sure developers understand what’s changing, Apple will let…",
+              "url": "https://9to5mac.com/2024/02/01/apple-developers-consultation-eu-app-store/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/01/app-store-eu.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T21:41:21Z",
+              "content": "Apple recently announced a series of measures to comply with the European Union’s Digital Markets Act (DMA) antitrust legislation, which includes allowing alternative app stores on the iPhone. To mak… [+1257 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Filipe Espósito",
+              "title": "Sharing your Apple Vision Pro with your family won’t be a seamless process",
+              "description": "Apple Vision Pro is an extremely personal and individual device. Even so, Apple has created a “Guest User” mode so that you can let your friends and family try out the headset without accessing your personal data. However, sharing your Vision Pro with others …",
+              "url": "https://9to5mac.com/2024/01/31/sharing-apple-vision-pro-with-family/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/01/vision-pro-tour.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T01:17:20Z",
+              "content": "Apple Vision Pro is an extremely personal and individual device. Even so, Apple has created a “Guest User” mode so that you can let your friends and family try out the headset without accessing your … [+1486 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Filipe Espósito",
+              "title": "Mark Zuckerberg explains why there will be no Meta app store for iPhone in the EU",
+              "description": "Many developers and tech companies didn’t react well to the changes proposed by Apple last month to comply with the European Union’s Digital Markets Act (DMA) antitrust legislation, and Mark Zuckerberg is on that team. The Meta CEO said on Thursday that he do…",
+              "url": "https://9to5mac.com/2024/02/01/zuckerberg-meta-apple-terms-in-the-eu/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2022/05/meta-apple.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T23:33:23Z",
+              "content": "Many developers and tech companies didn’t react well to the changes proposed by Apple last month to comply with the European Union’s Digital Markets Act (DMA) antitrust legislation, and Mark Zuckerbe… [+2563 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Zac Hall",
+              "title": "Bug bounty hunter gives rare peek at Apple’s special research iPhone for security experts",
+              "description": "Apple started shipping special research iPhone hardware to security experts in 2020. Naturally, security researchers have been mostly coy about sharing the specifics of what Apple calls “rooted” hardware. Still, there are some program participants who grant a…",
+              "url": "https://9to5mac.com/2024/02/01/apple-security-research-device-swag/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/iPhone-Security-Research.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T20:42:01Z",
+              "content": "Apple started shipping special research iPhone hardware to security experts in 2020. Naturally, security researchers have been mostly coy about sharing the specifics of what Apple calls “rooted” hard… [+2274 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Filipe Espósito",
+              "title": "Apple Vision Pro firmware can be recovered with the help of an iPhone",
+              "description": "We’re only a few days away from the official launch of the Apple Vision Pro in the U.S., and we’ve been learning a lot about the device over the last few days as Apple has invited some journalists to try it out in advance. Some users have been wondering how t…",
+              "url": "https://9to5mac.com/2024/01/31/apple-vision-pro-firmware-recovery-iphone/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2023/06/Apple-WWDC23-event-photos-Apple-Vision-Pro.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T01:48:20Z",
+              "content": "We’re only a few days away from the official launch of the Apple Vision Pro in the U.S., and we’ve been learning a lot about the device over the last few days as Apple has invited some journalists to… [+1420 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Zac Hall",
+              "title": "Apple announces Q1 2024 earnings, beating expectations with $119.58 billion revenue",
+              "description": "Apple has its fiscal year 2024 Q1 earnings results. The company reports $119.58 billion in revenue during the three-month period.\n\n\n\n more…",
+              "url": "https://9to5mac.com/2024/02/01/apple-earnings-q1-2024/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/apple-earnings.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T21:32:06Z",
+              "content": "Apple has its fiscal year 2024 Q1 earnings results. The company reports $119.58 billion in revenue during the three-month period. Analysts expected revenue around $117.91 billion. Apple reported reve… [+2591 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Ben Lovejoy",
+              "title": "As a new optical Apple product arrives, another is declared obsolete",
+              "description": "As one optical Apple product makes its debut, the company has declared another one obsolete: The last MacBook Pro with an optical drive … \n\n\n\n more…",
+              "url": "https://9to5mac.com/2024/02/01/optical-apple-product-obsolete/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/optical-Apple-product-obsolete.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T14:06:00Z",
+              "content": "As one optical Apple product makes its debut, the company has declared another one obsolete: The last MacBook Pro with an optical drive … \r\nArsTechnica spotted the change in status.\r\nSometimes, it’s … [+614 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Benjamin Mayo",
+              "title": "Tim Cook teases Apple AI announcements coming “later this year”, amid iOS 18 rumors",
+              "description": "During the quarterly earnings call today, Apple CEO Tim Cook made a rare comment about the future of Apple’s products, referencing the company’s investments in artificial intelligence. \n\n\n\nCook said that Apple is “excited to share the details of our ongoing w…",
+              "url": "https://9to5mac.com/2024/02/01/tim-cook-apple-ai-ios-18/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/01/how-to-stop-apple-from-listening-siri-recordings.jpeg.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T22:17:41Z",
+              "content": "During the quarterly earnings call today, Apple CEO Tim Cook made a rare comment about the future of Apple’s products, referencing the company’s investments in artificial intelligence. \r\nCook said th… [+1897 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Zac Hall",
+              "title": "Meta confirms spatial video playback coming to Quest one day before Vision Pro launch",
+              "description": "A long, long time ago (last Friday) we shared that Meta appeared to be planning to officially support spatial videos shot on iPhone without workarounds. Now, on the eve of Apple Vision Pro hitting stores, Meta has made it real. will indeed gain spatial suppor…",
+              "url": "https://9to5mac.com/2024/02/01/meta-quest-iphone-spatial-video/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/01/iphone-15-pro-spatial-video.jpeg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T18:18:05Z",
+              "content": "A long, long time ago (last Friday) we shared that Meta appeared to be planning to officially support spatial videos shot on iPhone without workarounds. Now, on the eve of Apple Vision Pro hitting st… [+1256 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Filipe Espósito",
+              "title": "Apple extends deal with Qualcomm until 2027 as it delays its own 5G modems",
+              "description": "Apple announced last year that it would extend its agreement with Qualcomm to continue using the company’s 5G modems until 2026. However, as Apple’s plans to build its own modems have been thwarted, it will continue to use Qualcomm’s modems in the iPhone unti…",
+              "url": "https://9to5mac.com/2024/01/31/apple-deal-qualcomm-2027-5g-modem/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2022/11/iphone-5g-india.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T02:24:20Z",
+              "content": "Apple announced last year that it would extend its agreement with Qualcomm to continue using the company’s 5G modems until 2026. However, as Apple’s plans to build its own modems have been thwarted, … [+1532 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Zac Hall",
+              "title": "Things is going spatial with the full project manager experience on Apple Vision Pro",
+              "description": "Culture Code’s Things, the tasks system I’ve relied on for over a decade, is going spatial for Apple Vision Pro. The standalone visionOS app brings the full project management experience to Apple’s first spatial computer.\n\n\n\n more…",
+              "url": "https://9to5mac.com/2024/02/01/things-apple-vision-pro/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/Things-3-for-Vision-2.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T20:01:38Z",
+              "content": "Culture Code’s Things, the tasks system I’ve relied on for over a decade, is going spatial for Apple Vision Pro. The standalone visionOS app brings the full project management experience to Apple’s f… [+1074 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Ben Lovejoy",
+              "title": "Hundreds of new Vision Pro apps available on launch day, says Apple",
+              "description": "More than 600 new Vision Pro apps will be available on launch day, says Apple – adding to the million plus iPad apps that also run on the device.\n\n\n\nThe company says that the new apps will change the way we approach everything from entertainment to productivi…",
+              "url": "https://9to5mac.com/2024/02/01/new-vision-pro-apps/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/600-new-Vision-Pro-apps.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T14:19:20Z",
+              "content": "More than 600 new Vision Pro apps will be available on launch day, says Apple adding to the million plus iPad apps that also run on the device.\r\nThe company says that the new apps will change the way… [+2852 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Chance Miller",
+              "title": "Apple says the EU accounts for just 7% of its global App Store revenue",
+              "description": "During Apple’s Q1 2024 earnings call with analysts and investors today, CEO Tim Cook and CFO Luca Maestri commented on the company’s recently-announced App Store changes in the European Union. \n\n\n\nMaestri revealed a notable statistic about the importance of A…",
+              "url": "https://9to5mac.com/2024/02/01/apple-says-the-eu-accounts-for-just-7-of-its-global-app-store-revenue/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/01/app-store-eu.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T23:05:30Z",
+              "content": "During Apple’s Q1 2024 earnings call with analysts and investors today, CEO Tim Cook and CFO Luca Maestri commented on the company’s recently-announced App Store changes in the European Union. \r\nMaes… [+1651 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Zac Hall",
+              "title": "These are the new emoji coming in iOS 17.4",
+              "description": "Apple is updating the iPhone with even more emoji characters. iOS 17.4 introduces new ways to express approval or denial, break through the chains, rise from the ashes, or just express that limes are superior to lemons. There’s also a mushroom that looks less…",
+              "url": "https://9to5mac.com/2024/02/01/new-emoji-ios-17/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/01/emoji-17-4.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T18:00:00Z",
+              "content": "Apple is updating the iPhone with even more emoji characters. iOS 17.4 introduces new ways to express approval or denial, break through the chains, rise from the ashes, or just express that limes are… [+648 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Zac Hall",
+              "title": "Screen Time is broken",
+              "description": "Last month I wrote about two features that I consider missing from Apple’s Screen Time parental controls. In retrospect, what I should have written is how Screen Time is broken. I thought the next software update would fix things.\n\n\n\n more…",
+              "url": "https://9to5mac.com/2024/02/01/screen-time-is-broken-2/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/screen-time-broken.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T19:17:04Z",
+              "content": "Last month I wrote about two features that I consider missing from Apple’s Screen Time parental controls. In retrospect, what I should have written is how Screen Time is broken. I thought the next so… [+3673 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Seth Kurkowski",
+              "title": "9to5Mac Daily: February 1, 2024 – More iOS 17.4 changes, iPhone shipment reports",
+              "description": "Listen to a recap of the top stories of the day from 9to5Mac. 9to5Mac Daily is available on iTunes and Apple’s Podcasts app, Stitcher, TuneIn, Google Play, or through our dedicated RSS feed for Overcast and other podcast players.\n\n\n\nConnect with us in the off…",
+              "url": "https://9to5mac.com/2024/02/01/daily-february-1-2024/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2021/12/9to5Mac-Daily-art-lead.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T18:39:43Z",
+              "content": "Listen to a recap of the top stories of the day from 9to5Mac. 9to5Mac Daily is available on iTunes and Apples Podcasts app, Stitcher, TuneIn, Google Play, or through our dedicated RSS feed for Overca… [+783 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Chance Miller",
+              "title": "EU App Store sideloading and commission changes, Vision Pro reviews, iOS 17.4 features",
+              "description": "Benjamin and Chance deep dive into all the App Store changes announced in response to the EU Digital Markets Act, and debate whether anyone is incentivized to make the leap. Also, the first Apple Vision Pro reviews have dropped ahead of its Friday release, an…",
+              "url": "https://9to5mac.com/2024/02/01/happy-hour-471/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2018/04/9to5mac-happy-hour-lead1.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T19:23:14Z",
+              "content": "Benjamin and Chance deep dive into all the App Store changes announced in response to the EU Digital Markets Act, and debate whether anyone is incentivized to make the leap. Also, the first Apple Vis… [+1358 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Rikka Altland",
+              "title": "iPad Air 5 clearance starts at $450, iPhone 15 promo, official MagSafe leather wallet $45, more",
+              "description": "A new month means a new batch of fresh Apple deals, and all of today’s best come headlined by Apple’s latest iPad Air 5. Various configurations start from $450 and come joined by a chance to score iPhone 15 for just a penny thanks to this Amazon and Boost Inf…",
+              "url": "https://9to5mac.com/2024/02/01/ipad-air-5-iphone-15-best-apple-deals/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/ipad-air-5-iphone-15-deals.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T16:46:28Z",
+              "content": "A new month means a new batch of fresh Apple deals, and all of today’s best come headlined by Apples latest iPad Air 5. Various configurations start from $450 and come joined by a chance to score iPh… [+5134 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Ben Lovejoy",
+              "title": "Tim Cook talks Vision Pro, and his secret prototype experience many years ago",
+              "description": "In a new piece in Vanity Fair, Tim Cook talks Vision Pro – including his first ever experience of using an early prototype of the device in the company’s secretive design block.\n\n\n\nThe piece doesn’t say when that was, only that it was before Apple moved to it…",
+              "url": "https://9to5mac.com/2024/02/01/tim-cook-talks-vision-pro/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/Tim-Cook-talks-Vision-Pro-secret-prototype.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T13:16:21Z",
+              "content": "In a new piece in Vanity Fair,Tim Cook talks Vision Pro including his first ever experience of using an early prototype of the device in the company’s secretive design block.\r\nThe piece doesn’t say w… [+2623 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Chance Miller",
+              "title": "Abode debuts new smart lock with a retrofit design, but HomeKit support is missing",
+              "description": "Popular smart home is venturing into the smart lock business for the first time. The new Abode Lock features a retrofit design that the company says works with any latch-style deadbolt and doesn’t require any changes to the door hardware itself.\n\n\n\nUnfortunat…",
+              "url": "https://9to5mac.com/2024/02/01/abode-new-smart-lock-no-homekit-sad/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/01/Abode-Lock-on-door-with-handle-deadbolt-out.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T15:00:00Z",
+              "content": "Popular smart home security company Abode is venturing into the smart lock business for the first time. The new Abode Lock features a retrofit design that the company says works with any latch-style … [+5826 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Ben Lovejoy",
+              "title": "App Store changes: EU is watching, and ready to ‘take strong action’",
+              "description": "There’s been much discussion of Apple’s proposed App Store changes, and whether or not they will satisfy antitrust regulators.\n\n\n\nThe EU has so far been non-committal, but has said that it will be examining them closely, and won’t hesitate to “take strong act…",
+              "url": "https://9to5mac.com/2024/02/01/app-store-changes-eu-response/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/App-Store-changes.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T12:04:36Z",
+              "content": "There’s been much discussion of Apple’s proposed App Store changes, and whether or not they will satisfy antitrust regulators.\r\nThe EU has so far been non-committal, but has said that it will be exam… [+1946 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Michael Potuck",
+              "title": "Are you happy with your iPhone 15 Pro/Max battery life? [Poll]",
+              "description": "We saw a report this week that iPhone 15 Pro customer satisfaction has dropped considerably since launching last September – low enough that the iPhone 15/Plus is now rated higher by users. Why? One of the top reasons is disappointment with the battery. So ho…",
+              "url": "https://9to5mac.com/2024/02/01/happy-with-iphone-15-pro-battery-life-poll/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2022/07/iphone-battery-mah-capacity-list.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T18:06:27Z",
+              "content": "We saw a report this week that iPhone 15 Pro customer satisfaction has dropped considerably since launching last September low enough that the iPhone 15/Plus is now rated higher by users. Why? One of… [+1382 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Ben Lovejoy",
+              "title": "Senate hearing on social media: Zuckerberg apologises to families; bizarre racism",
+              "description": "The Senate hearing on social media saw Meta CEO Mark Zuckerberg apologise to families who hold social media responsible for children who harmed themselves, including some who took their own lives.\n\n\n\nIt also saw some bizarre racism by one senator who apparent…",
+              "url": "https://9to5mac.com/2024/02/01/senate-hearing-on-social-media/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2024/02/Senate-hearing-on-social-media.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T13:51:22Z",
+              "content": "The Senate hearing on social media saw Meta CEO Mark Zuckerberg apologise to families who hold social media responsible for children who harmed themselves, including some who took their own lives.\r\nI… [+2496 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "9to5Mac"
+              },
+              "author": "Michael Potuck",
+              "title": "iPhone 15 camera vs 15 Pro camera: What sets them apart?",
+              "description": "Many of the differences between the iPhone 15 and 15 Pro come down to the new camera systems. As the name implies, the Pro devices offer the most advanced cameras but 15 and 15 Plus still have very capable systems. However, new this year, iPhone 15 Pro Max st…",
+              "url": "https://9to5mac.com/2024/02/01/iphone-15-camera-vs-15-pro-camera/",
+              "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2023/09/iphone-15-camera-vs-15-pro-camera-comparison.webp?resize=1200%2C628&quality=82&strip=all&ssl=1",
+              "publishedAt": "2024-02-01T19:10:00Z",
+              "content": "Many of the differences between the iPhone 15 and 15 Pro come down to the new camera systems. As the name implies, the Pro devices offer the most advanced cameras but 15 and 15 Plus still have very c… [+10322 chars]"
+            },
+            {
+              "source": {
+                "id": "vice-news",
+                "name": "Vice News"
+              },
+              "author": "Nicolette Accardi, HP",
+              "title": "Small Kitchen? Le Creuset’s Tiny Cocotte Does Everything a Dutch Oven Can",
+              "description": "Le Creuset's small-space-friendly cocotte is made with the same high-quality materials as its big boys, and is perfect for meals for one or two.",
+              "url": "https://www.vice.com/en/article/wxjypb/le-creuset-cocotte-review",
+              "urlToImage": "https://video-images.vice.com/articles/65bbf95b4846ce7565dc4de6/lede/1706822004503-cockotte.png?image-resize-opts=Y3JvcD0xeHc6MXhoO2NlbnRlcixjZW50ZXImcmVzaXplPTEyMDA6KiZyZXNpemU9MTIwMDoq",
+              "publishedAt": "2024-02-01T22:36:37Z",
+              "content": "VICE may receive a commission if you buy products through the links on our site. Read morehere.\r\nWhenever Im at my friends house for social gatheringswhether theyre dinner parties or less kitchen-cen… [+5452 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MarketWatch"
+              },
+              "author": "Barbara Kollmeyer",
+              "title": "This fund is shorting Apple — and just bet against another popular AI stock",
+              "description": "Bireme Capital say they are shorting Apple, which reports results after the close on Thursday.",
+              "url": "https://www.marketwatch.com/story/this-fund-is-shorting-apple-and-just-bet-against-another-popular-ai-stock-a6967b20",
+              "urlToImage": "https://images.mktw.net/im-38439506/social",
+              "publishedAt": "2024-02-01T11:38:00Z",
+              "content": "Its looking like an upbeat start to fearful February as investors look past a hawkish Fed and put their faith in the last of Big Tech results coming after the close.An immaculate landing is fully pri… [+7357 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MarketWatch"
+              },
+              "author": "Jamie Chisholm",
+              "title": "S&P 500 futures bounce after two-day sell-off as Apple, Amazon and Meta earnings loom",
+              "description": "U.S. stock futures rose early Thursday ahead of earnings from three of the Magnificent 7: Apple, Amazon and Meta.",
+              "url": "https://www.marketwatch.com/story/s-p-500-futures-bounce-after-two-day-sell-off-as-apple-amazon-and-meta-earnings-loom-c1db8ef1",
+              "urlToImage": "https://images.mktw.net/im-34248748/social",
+              "publishedAt": "2024-02-01T10:07:00Z",
+              "content": "U.S. stock futures rose early Thursday ahead of earnings from three of the Magnificent 7: Apple, Amazon.com and Meta Platforms.On Wednesday, the Dow Jones Industrial Average \r\n DJIA\r\n fell 317 points… [+3427 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MarketWatch"
+              },
+              "author": "Therese Poletti",
+              "title": "Meta stuns Wall Street with its first dividend. Amazon and Alphabet could be next.",
+              "description": "Meta likely just made Silicon Valley’s most monumental dividend decision since Apple reinstated its payout over a decade ago.",
+              "url": "https://www.marketwatch.com/story/meta-stuns-wall-street-with-its-first-dividend-amazon-and-alphabet-could-be-next-b8b2349e",
+              "urlToImage": "https://images.mktw.net/im-818987/social",
+              "publishedAt": "2024-02-01T23:41:00Z",
+              "content": "Meta Platforms Inc. surprised Wall Street on Thursday with its first-ever dividend, a move thats likely Silicon Valleys most monumental dividend decision since Apple Inc. reinstated its payout over a… [+2661 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MarketWatch"
+              },
+              "author": "Mike Murphy",
+              "title": "Max is back on top: Here’s what’s worth streaming in February 2024",
+              "description": "February boasts the final season of “Curb Your Enthusiasm,” the return of network shows like “Abbott Elementary” and “Ghosts” and blockbusters like “Mr. & Mrs. Smith” and “Shōgun.”",
+              "url": "https://www.marketwatch.com/story/max-is-back-on-top-heres-whats-worth-streaming-in-february-2024-058faede",
+              "urlToImage": "https://images.mktw.net/im-39459940/social",
+              "publishedAt": "2024-02-01T12:01:00Z",
+              "content": "Its become tiresome to hear ever-more-common complaints that between price hikes, consolidation and fewer shows, streaming has basically become cable.It has not. Its not going to. For consumers, stre… [+16825 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MarketWatch"
+              },
+              "author": "Tomi Kilgore",
+              "title": "Why you can count on the Dow making changes in February",
+              "description": "Investors can count on the Dow Jones Industrial Average changing its members next month, for the first time in nearly four years, for several reasons. The question is, who’s out and who’s in?",
+              "url": "https://www.marketwatch.com/story/why-you-can-count-on-the-dow-making-changes-in-february-6334fda9",
+              "urlToImage": "https://images.mktw.net/im-47719801/social",
+              "publishedAt": "2024-02-01T16:49:00Z",
+              "content": "Investors can count on the Dow Jones Industrial Average changing its members next month, for the first time in nearly four years, for several reasons. The question is, whos out and whos in?How and wh… [+6728 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "MarketWatch"
+              },
+              "author": "Claudia Assis, Ciara Linnane",
+              "title": "Can Elon Musk do ‘whatever he wants’? Why moving Tesla out of Delaware may spook investors.",
+              "description": "Tesla Inc. Chief Executive Elon Musk’s push to reincorporate the electric-vehicle maker in Texas after a legal defeat in Delaware may have broader implications for the company.",
+              "url": "https://www.marketwatch.com/story/can-elon-musk-do-whatever-he-wants-why-moving-tesla-out-of-delaware-may-spook-investors-d07e20a8",
+              "urlToImage": "https://images.mktw.net/im-73882240/social",
+              "publishedAt": "2024-02-01T18:16:00Z",
+              "content": "Tesla Inc. Chief Executive Elon Musks push to reincorporate the electric-vehicle maker in Texas after a legal defeat in Delaware may have broader implications for the company.The move could reinforce… [+6780 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "AppleInsider"
+              },
+              "author": "news@appleinsider.com (William Gallagher)",
+              "title": "Inside Apple Karntner Strabe: Austria's first and only Apple Store",
+              "description": "Situated between the Vienna State Opera and the city's famous St. Stephen's Cathedral, Apple Karntner Strabe is a deceptively small boutique store. Take a look inside.Apple Karntner Strabe in ViennaApple Stores are always noteworthy because the company appear…",
+              "url": "https://appleinsider.com/articles/24/02/01/inside-apple-karntner-strabe-austrias-first-and-only-apple-store",
+              "urlToImage": "https://photos5.appleinsider.com/gallery/57887-118935-000-lead-Apple-Karntner-Strabe-xl.jpg",
+              "publishedAt": "2024-02-01T11:23:54Z",
+              "content": "Apple Karntner Strabe in Vienna\r\nSituated between the Vienna State Opera and the city's famous St. Stephen's Cathedral, Apple Karntner Strabe is a deceptively small boutique store. Take a look inside… [+4115 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "AppleInsider"
+              },
+              "author": "news@appleinsider.com (Wesley Hilliard)",
+              "title": "Apple won't license Masimo's patents despite Apple Watch import ban",
+              "description": "Apple CEO Tim Cook says there isn't any intention to license Masimo's blood oxygen detection to end the Apple Watch import ban.Apple Watch Series 9Masimo has been embroiled in a patent lawsuit that most recently resulted in an import ban for Apple Watches wit…",
+              "url": "https://appleinsider.com/articles/24/02/01/apple-wont-license-masimos-patents-despite-apple-watch-import-ban",
+              "urlToImage": "https://photos5.appleinsider.com/gallery/58412-118986-Series-9-back-4-xl.jpg",
+              "publishedAt": "2024-02-01T21:54:02Z",
+              "content": "Apple Watch Series 9\r\nApple CEO Tim Cook says there isn't any intention to license Masimo's blood oxygen detection to end the Apple Watch import ban.\r\nMasimo has been embroiled in a patent lawsuit th… [+1231 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "AppleInsider"
+              },
+              "author": "news@appleinsider.com (Wesley Hilliard)",
+              "title": "Apple Vision Pro immersive titles have begun showing up in Apple TV app ahead of launch",
+              "description": "Apple's 8K immersive experience series have started populating in the Apple TV app, though you'll need the Apple Vision Pro to interact.Apple Vision Pro immersive experiencesApple Vision Pro launches on Friday and there are signs of that impending release beg…",
+              "url": "https://appleinsider.com/articles/24/02/01/apple-vision-pro-immersive-titles-have-begun-showing-up-in-apple-tv-app-ahead-of-launch",
+              "urlToImage": "https://photos5.appleinsider.com/gallery/58395-118962-IMG_4862-xl.jpg",
+              "publishedAt": "2024-02-01T00:10:40Z",
+              "content": "Apple Vision Pro immersive experiences\r\nApple's 8K immersive experience series have started populating in the Apple TV app, though you'll need the Apple Vision Pro to interact.\r\nApple Vision Pro laun… [+1845 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "AppleInsider"
+              },
+              "author": "news@appleinsider.com (Amber Neely)",
+              "title": "Tim Cook says he always knew Apple would arrive at the Apple Vision Pro",
+              "description": "In a new interview, Apple CEO Tim Cook was pictured for the first time wearing the Apple Vision Pro, and discussed the inevitable road to the headset.Tim Cook dons the Apple Vision Pro | Credit: Vanity FairThe Apple Vision Pro is set to start arriving to earl…",
+              "url": "https://appleinsider.com/articles/24/02/01/tim-cook-says-he-always-knew-apple-would-arrive-at-the-apple-vision-pro",
+              "urlToImage": "https://photos5.appleinsider.com/gallery/58405-118978-cookavp-xl.jpg",
+              "publishedAt": "2024-02-01T15:11:21Z",
+              "content": "Tim Cook dons the Apple Vision Pro | Credit: Vanity Fair\r\nIn a new interview, Apple CEO Tim Cook was pictured for the first time wearing the Apple Vision Pro, and discussed the inevitable road to the… [+2276 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "AppleInsider"
+              },
+              "author": "news@appleinsider.com (William Gallagher)",
+              "title": "Apple Vision Pro now has over 600 native apps for launch day",
+              "description": "Following early doubts over how many developers were creating native apps for the Apple Vision Pro, Apple says it has triple the previous estimates.Apple's visionOS menu systemBased on third-party estimates, it was previously reported that the Apple Vision Pr…",
+              "url": "https://appleinsider.com/articles/24/02/01/apple-vision-pro-now-has-over-600-native-apps-for-launch-day",
+              "urlToImage": "https://photos5.appleinsider.com/gallery/58243-118691-58142-118463-57058-116036-visionOS-home-xl-xl-xl.jpg",
+              "publishedAt": "2024-02-01T14:20:57Z",
+              "content": "Apple's visionOS menu system\r\nFollowing early doubts over how many developers were creating native apps for the Apple Vision Pro, Apple says it has triple the previous estimates.\r\nBased on third-part… [+2104 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "AppleInsider"
+              },
+              "author": "news@appleinsider.com (William Gallagher)",
+              "title": "Apple Car could automatically pick you up, take you home, and play your music on the way",
+              "description": "Apple has been researching how an Apple Car could reduce how a driver even needs to think about destinations, music or air conditioning, by recognizing passengers and re-routing locations.Starting a SharePlay session in CarPlayIf you thought it was good when …",
+              "url": "https://appleinsider.com/articles/24/02/01/apple-car-could-automatically-pick-you-up-take-you-home-and-play-your-music-on-the-way",
+              "urlToImage": "https://photos5.appleinsider.com/gallery/56249-114167-IMG_3029-xl.jpg",
+              "publishedAt": "2024-02-01T13:50:47Z",
+              "content": "Starting a SharePlay session in CarPlay\r\nApple has been researching how an Apple Car could reduce how a driver even needs to think about destinations, music or air conditioning, by recognizing passen… [+5099 chars]"
             }
           ]
         }
 
-        setTotalPages(Math.ceil(data.totalResults / 9));
-        console.log(data.articles);
+        setTotalPages(Math.ceil(data.articles.length / itemsPerPage));
         setImages(data.articles);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -1339,6 +1337,9 @@ const Cards = () => {
     }
   };
 
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
   return (
     <>
       <section className="section-cards">
@@ -1349,7 +1350,7 @@ const Cards = () => {
           ) : (
             <>
               <div className="cards grid grid-cols-3 gap-10">
-                {Images.map((ele, i) => (
+                {Images.slice(startIndex, endIndex).map((ele, i) => (
                   <div key={i} className="card">
                     <img src={ele.urlToImage} alt="Ent" />
                     <div>
