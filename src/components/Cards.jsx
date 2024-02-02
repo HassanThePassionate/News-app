@@ -13,7 +13,7 @@ const Cards = () => {
       try {
         setLoading(true);
         const api = await axios.get(
-          `https://newsapi.org/v2/everything?q=tesla&from=2024-01-01&sortBy=publishedAt&apiKey=19ed7a185eac4262b0edfca908e60f4c&page=${currentPage}`
+          `https://newsapi.org/v2/everything?q=tesla&f&sortBy=publishedAt&apiKey=19ed7a185eac4262b0edfca908e60f4c&page=${currentPage}`
         );
         const data = api.data;
         setTotalPages(Math.ceil(data.totalResults / 9));
